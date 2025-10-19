@@ -1,0 +1,12 @@
+---
+import { getEntry, render } from 'astro:content';
+const { id } = Astro.props;
+
+const post = await getEntry('blog', id);
+const { Content } = await render(post);
+
+---
+<p class="text-2xl font-bold text-atlantis-400 text-center">{post?.data.title}</p>
+<p class="text-sm text-gray-400 text-center">{new Date(post?.data?.pubDate).toLocaleDateString()}</p>
+
+<Content />

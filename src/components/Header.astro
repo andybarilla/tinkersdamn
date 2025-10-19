@@ -1,0 +1,11 @@
+---
+import {Image} from 'astro:assets';
+import image from '../assets/tinkers-damn-logo.png'
+import Navigation from "./Navigation.astro";
+---
+<header class="flex flex-col justify-center items-center">
+    <a href="/">
+        <Image src={image} alt="Tinker's Damn Logo" height={150}/>
+    </a>
+    <Navigation/>
+</header>

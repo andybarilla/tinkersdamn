@@ -1,0 +1,57 @@
+---
+const {bandId, appId, upcoming = true, highlightColor = 'lime-400'} = Astro.props;
+const params = new URLSearchParams();
+params.append('app_id', appId);
+params.append('date', upcoming ? "upcoming" : "past");
+
+const days = ['Sun', 'Mond', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const url = `https://rest.bandsintown.com/artists/${bandId}/events?${params}`;
+const response = await fetch(url);
+const data = await response.json();
+
+const formatDescription = (description: string): string => {
+    if (!description) return '';
+    // Replace URLs with anchor tags
+    const urlRegex = /((https?:\/\/[^\s<]+))/g;
+    const withLinks = description.replace(urlRegex, `<a href="$1" class="text-${highlightColor}" target="_blank" rel="noopener noreferrer">$1</a>`);
+    // Replace line breaks with <br>
+    return withLinks.replace(/(?:\r\n|\r|\n)/g, '<br>');
+}
+
+---
+{data.length === 0 ? (
+<p class="text-center text-gray-400">No {upcoming ? "upcoming" : "past"} shows found.</p>
+    ) : (
+<ul class="space-y-4">
+    {data.slice(0).reverse().map(show => (
+            <li class="border border-gray-700 rounded-lg">
+                <div class="flex gap-4">
+                    <div class=`bg-${highlightColor} text-black w-20 flex items-center`>
+                        <div class="flex flex-col text-center w-full">
+                            <div class="font-bold">{days[new Date(show.datetime).getDay()]}</div>
+                            <div class="text-4xl font-bold">{new Date(show.datetime).getDate()}</div>
+                            <div class="font-bold">{months[new Date(show.datetime).getMonth()]}</div>
+                            {new Date(show.datetime).getFullYear() !== new Date().getFullYear() &&
+                                    <div class="font-bold">{new Date(show.datetime).getFullYear()}</div>}
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class={`text-lg font-bold text-${highlightColor}`}><a href={show.url}>{show.venue.name}</a>
+                        </div>
+                        {show.lineup.length > 1 && (
+                                <div>
+                                    <span class="font-bold pr-2">Lineup:</span> {show.lineup?.join(', ')}
+                                </div>
+                        )}
+                        {show.venue.street_address && <p>{show.venue.street_address}</p>}
+                        <p>{show.venue.city}, {show.venue.region || show.venue.country}</p>
+                        {show.description &&
+                                <div class="text-gray-400" set:html={formatDescription(show.description)}></div>}
+                    </div>
+                </div>
+            </li>
+    ))}
+</ul>
+        )}

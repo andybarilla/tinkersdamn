@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {getCollection} from 'astro:content';
+import Post from "../components/Post.astro";
+
+const allPosts = await getCollection('blog');
+---
+<Layout>
+    {allPosts.map((post, index) => (
+            <Post id={post.id} key={index}/>
+    ))}
+</Layout>

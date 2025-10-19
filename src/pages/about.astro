@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {Image} from 'astro:assets';
+import image from '../assets/bandphoto2022adjusted2.jpg';
+import {YouTube} from 'astro-embed';
+---
+<Layout>
+    <h1 class="text-2xl font-bold text-center pb-3 text-atlantis-400">Who's Tinker's Damn?</h1>
+
+    <h2 class="text-xl text-center">Grungy grooves on the rocks with a psychedelic twist</h2>
+
+    <div class="py-5">
+        <span class="font-bold text-atlantis-400">Tinker's Damn</span> has been rocking Colorado Springs since 2014.
+        During the pandemic downtime, what started out as a cover band has now evolved into a group
+        producing original music described as a cross between Clutch and The Pretty Reckless.
+    </div>
+
+    <div class="pb-5">
+        <span class="font-bold text-atlantis-400">Tinker's Damn</span> is fronted by <span class="font-bold text-atlantis-400">Courtney's</span>
+        killer and versatile vocal stylings, with <span class="font-bold text-atlantis-400">Shawn</span> ripping out the guitar
+        solos. The rhythm section grooves with the bass stylings of <span class="font-bold text-atlantis-400">Andy</span>
+        with <span class="font-bold text-atlantis-400">Rob</span> holding down the backbeat on drums.
+    </div>
+
+    <Image src={image} alt="Band photo of the members of Tinker's Damn in a brewroom"/>
+</Layout>

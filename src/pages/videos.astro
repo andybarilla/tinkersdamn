@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {YouTube} from 'astro-embed';
+const videos = [
+    {
+        title: "Tinker's Damn: Safe (The Scrote Song) [Live]",
+        url: "https://www.youtube.com/watch?v=uLJ_V1NMJbM"
+    },
+    {
+        title: "Tinker's Damn: Paris [Live]",
+        url: "https://www.youtube.com/watch?v=1_YKfSnCRE0"
+    },
+    {
+        title: "Tinker's Damn: Piece of My Heart [Live]",
+        url: "https://www.youtube.com/watch?v=vcMC6QblM2g"
+    }
+];
+---
+<Layout>
+    <h1 class="text-2xl font-bold text-center pb-3 text-atlantis-400">Videos</h1>
+
+    {videos.map(video => (
+        <YouTube id={video.url}
+                 title={video.title}
+                 class="mx-auto my-5"/>
+    ))}
+</Layout>
