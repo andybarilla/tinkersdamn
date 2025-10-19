@@ -1,12 +1,57 @@
 ---
-import { getEntry, render } from 'astro:content';
-const { id } = Astro.props;
+import {getEntry, render} from 'astro:content';
+import {
+    FacebookShareButton,
+    RedditShareButton,
+    ThreadsShareButton,
+    TwitterShareButton,
+    WhatsAppShareButton,
+    BlueskyShareButton,
+    SocialShare
+} from "astro-social-share";
+
+const {id} = Astro.props;
+const BUTTONS = [
+    FacebookShareButton,
+    TwitterShareButton,
+    RedditShareButton,
+    WhatsAppShareButton,
+    ThreadsShareButton,
+    BlueskyShareButton
+];
 
 const post = await getEntry('blog', id);
-const { Content } = await render(post);
-
+const {Content} = await render(post);
 ---
-<p class="text-2xl font-bold text-atlantis-400 text-center">{post?.data.title}</p>
-<p class="text-sm text-gray-400 text-center">{new Date(post?.data?.pubDate).toLocaleDateString()}</p>
+<div class="border-clairvoyant-950 border-2 rounded-lg p-6 mb-4 bg-neutral-900">
+    <div class="text-2xl font-bold text-atlantis-400 text-center"><a href=`/posts/${post?.id}`>{post?.data.title}</a>
+    </div>
+    <div class="text-sm text-gray-400 text-center">{new Date(post?.data?.pubDate).toLocaleDateString()}</div>
 
-<Content />
+    <Content/>
+
+    <div class="flex justify-center gap-2">
+        Share to <SocialShare
+            buttons={BUTTONS}
+                description={post?.data?.description}
+                title={post?.data?.title} />
+    </div>
+
+</div>
+
+<slot name="astro-social-share-css">
+    <style is:global>
+        .astro-social-share {
+            margin: 0px 0px;
+            height: 18px;
+        }
+        .astro-social-share a {
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .astro-social-share svg {
+            height: 18px;
+            fill: white;
+        }
+    </style>
+</slot>
