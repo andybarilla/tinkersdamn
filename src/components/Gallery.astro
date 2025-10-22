@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+
+// Add your performance photos to the assets folder
+// For now, using the existing band photo as a placeholder
+import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
+
+// When you add more photos, update this array
+const photos = [
+  { src: bandPhoto, alt: "Tinker's Damn live performance", caption: "Rocking out at Colorado Springs" },
+  // Add more photos here like:
+  // { src: photo2, alt: "Description", caption: "Event name" },
+];
+---
+
+<section class="gallery-section py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+      Live Performances
+    </h2>
+    <p class="text-center text-gray-400 mb-12 text-lg">
+      Capturing the energy of our live shows
+    </p>
+
+    <div class="gallery-grid">
+      {photos.map((photo, index) => (
+        <div
+          class="gallery-item"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <div class="gallery-item-inner">
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              class="gallery-image"
+              quality={90}
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">
+                <p class="text-lg font-semibold">{photo.caption}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 3, 3, 0.5) 0%,
+      rgba(81, 8, 86, 0.2) 50%,
+      rgba(3, 3, 3, 0.5) 100%
+    );
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-item {
+    animation: fade-in-scale 0.6s ease-out both;
+    opacity: 0;
+  }
+
+  .gallery-item-inner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+    box-shadow:
+      0 4px 6px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(227, 126, 244, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gallery-item-inner:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.5),
+      0 0 0 2px rgba(227, 126, 244, 0.4),
+      0 0 30px rgba(227, 126, 244, 0.3),
+      0 0 60px rgba(150, 202, 79, 0.2);
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gallery-item-inner:hover .gallery-image {
+    transform: scale(1.1);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(81, 8, 86, 0.9) 0%,
+      rgba(81, 8, 86, 0.7) 40%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+  }
+
+  .gallery-item-inner:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-caption {
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gallery-item-inner:hover .gallery-caption {
+    transform: translateY(0);
+  }
+
+  .gallery-caption p {
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    margin: 0;
+  }
+
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Add a subtle glow effect on hover */
+  .gallery-item-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(227, 126, 244, 0.2) 0%,
+      rgba(150, 202, 79, 0.2) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .gallery-item-inner:hover::before {
+    opacity: 1;
+  }
+</style>

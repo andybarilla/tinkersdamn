@@ -28,19 +28,71 @@
 }
 @layer base {
     body {
-        background: linear-gradient(
-            180deg,
-            rgba(81, 8, 86, 0.3) 0%,     /* clairvoyant-950 */
-            rgba(3, 3, 3, 1) 20%,         /* neutral-950 */
-            rgba(3, 3, 3, 1) 80%,
-            rgba(25, 40, 11, 0.3) 100%    /* atlantis-950 */
-        );
+        background:
+            /* Subtle grid pattern */
+            repeating-linear-gradient(
+                0deg,
+                rgba(150, 202, 79, 0.02) 0px,
+                transparent 1px,
+                transparent 40px,
+                rgba(150, 202, 79, 0.02) 41px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                rgba(227, 126, 244, 0.02) 0px,
+                transparent 1px,
+                transparent 40px,
+                rgba(227, 126, 244, 0.02) 41px
+            ),
+            /* Subtle sound wave pattern */
+            radial-gradient(
+                ellipse at 20% 50%,
+                rgba(150, 202, 79, 0.03) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                ellipse at 80% 50%,
+                rgba(227, 126, 244, 0.03) 0%,
+                transparent 50%
+            ),
+            linear-gradient(
+                180deg,
+                rgba(81, 8, 86, 0.3) 0%,     /* clairvoyant-950 */
+                rgba(3, 3, 3, 1) 20%,         /* neutral-950 */
+                rgba(3, 3, 3, 1) 80%,
+                rgba(25, 40, 11, 0.3) 100%    /* atlantis-950 */
+            );
         background-attachment: fixed;
         color: white;
         font-family: var(--font-sans);
         font-weight: 400;
         letter-spacing: -0.011em;
         min-height: 100vh;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            /* Music note pattern - very subtle */
+            radial-gradient(circle at 10% 20%, rgba(150, 202, 79, 0.015) 0%, transparent 2%),
+            radial-gradient(circle at 90% 80%, rgba(227, 126, 244, 0.015) 0%, transparent 2%),
+            radial-gradient(circle at 30% 60%, rgba(150, 202, 79, 0.01) 0%, transparent 1.5%),
+            radial-gradient(circle at 70% 40%, rgba(227, 126, 244, 0.01) 0%, transparent 1.5%);
+        background-size: 600px 600px, 800px 800px, 400px 400px, 500px 500px;
+        background-position: 0 0, 100px 100px, 200px 50px, 300px 150px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.5;
+    }
+
+    body > * {
+        position: relative;
+        z-index: 1;
     }
 
     h1, h2, h3, h4, h5, h6 {

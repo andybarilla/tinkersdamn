@@ -1,14 +1,41 @@
+---
+import Guitar from './icons/Guitar.astro';
+import Calendar from './icons/Calendar.astro';
+import MusicNote from './icons/MusicNote.astro';
+import Video from './icons/Video.astro';
+import Mail from './icons/Mail.astro';
+import Info from './icons/Info.astro';
+---
+
 <nav class="nav-bar bg-clairvoyant-950 w-full sticky top-0 z-50">
     <div class="container mx-auto px-2">
         <div class="flex items-center justify-between">
             <div class="hidden md:flex w-full justify-between">
-                <!-- Navigation Links -->
-                <a href="/#navigation-start" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200">Home</a>
-                <a href="/shows" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200">Shows</a>
-                <a href="/music" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200">Music</a>
-                <a href="/videos" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200">Videos</a>
-                <a href="/booking" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200">Booking</a>
-                <a href="/about" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200">About</a>
+                <!-- Navigation Links with Icons -->
+                <a href="/#navigation-start" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
+                    <Guitar class="w-5 h-5" />
+                    <span>Home</span>
+                </a>
+                <a href="/shows" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
+                    <Calendar class="w-5 h-5" />
+                    <span>Shows</span>
+                </a>
+                <a href="/music" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
+                    <MusicNote class="w-5 h-5" />
+                    <span>Music</span>
+                </a>
+                <a href="/videos" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
+                    <Video class="w-5 h-5" />
+                    <span>Videos</span>
+                </a>
+                <a href="/booking" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
+                    <Mail class="w-5 h-5" />
+                    <span>Booking</span>
+                </a>
+                <a href="/about" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
+                    <Info class="w-5 h-5" />
+                    <span>About</span>
+                </a>
             </div>
             <!-- Mobile Menu Button -->
             <div class="md:hidden">

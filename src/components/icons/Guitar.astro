@@ -1,0 +1,49 @@
+---
+const { class: className = "w-6 h-6" } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Guitar body -->
+  <ellipse
+    cx="8"
+    cy="16"
+    rx="5"
+    ry="6"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="currentColor"
+    fill-opacity="0.1"
+  />
+  <!-- Neck -->
+  <path
+    d="M11 12L19 4"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  <!-- Headstock -->
+  <path
+    d="M19 4L21 2"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  <!-- Sound hole -->
+  <circle
+    cx="8"
+    cy="16"
+    r="2"
+    stroke="currentColor"
+    stroke-width="1.5"
+    fill="none"
+  />
+  <!-- Strings -->
+  <line x1="13" y1="10" x2="6" y2="17" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+  <line x1="14" y1="9" x2="7" y2="16" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+  <line x1="15" y1="8" x2="8" y2="15" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+</svg>
