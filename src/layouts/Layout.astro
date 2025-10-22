@@ -19,11 +19,11 @@ import { ClientRouter } from 'astro:transitions';
 </head>
 <body class="bg-neutral-950">
 <Header/>
-<div class="flex">
+<div class="flex flex-col lg:flex-row">
     <div class="p-5 lg:max-w-6xl md:max-w-4xl w-full mx-auto">
         <slot/>
     </div>
-    <div class="w-64">
+    <div class="w-full lg:w-64 px-5 lg:px-0">
         <Sidebar />
     </div>
 </div>
