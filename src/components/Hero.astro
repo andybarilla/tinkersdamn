@@ -1,5 +1,6 @@
 ---
 import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
+import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
 import logo from '../assets/tinkers-damn-logo.png'
 import { Image } from 'astro:assets';
 ---
@@ -7,10 +8,19 @@ import { Image } from 'astro:assets';
 <section class="hero-section relative overflow-hidden">
   <!-- Background Image with Parallax -->
   <div class="hero-image-container absolute inset-0">
+    <!-- Desktop Image -->
     <Image
       src={bandPhoto}
       alt="Tinker's Damn band photo"
-      class="hero-image w-full h-full object-cover"
+      class="hero-image hero-image-desktop w-full h-full object-cover"
+      loading="eager"
+      quality={90}
+    />
+    <!-- Mobile Image -->
+    <Image
+      src={bandPhotoMobile}
+      alt="Tinker's Damn band photo"
+      class="hero-image hero-image-mobile w-full h-full object-cover"
       loading="eager"
       quality={90}
     />
@@ -56,6 +66,25 @@ import { Image } from 'astro:assets';
   .hero-image {
     animation: subtle-zoom 20s ease-in-out infinite alternate;
     transform-origin: center center;
+  }
+
+  /* Show mobile image on small screens, desktop on larger screens */
+  .hero-image-mobile {
+    display: block;
+  }
+
+  .hero-image-desktop {
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    .hero-image-mobile {
+      display: none;
+    }
+
+    .hero-image-desktop {
+      display: block;
+    }
   }
 
   /* Gradient overlays for depth and readability */

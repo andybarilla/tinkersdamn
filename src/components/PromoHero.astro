@@ -2,17 +2,27 @@
 import { Image } from 'astro:assets';
 import albumCover from '../assets/earl-dr-cover.png';
 import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
+import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
 ---
 
 <div class="promo-hero-overlay" id="promoHero">
   <!-- Band photo that appears during corruption -->
   <div class="hero-background">
+    <!-- Desktop Image -->
     <Image
       src={bandPhoto}
       alt="Tinker's Damn Band"
       quality={90}
       loading="eager"
-      class="band-photo"
+      class="band-photo band-photo-desktop"
+    />
+    <!-- Mobile Image -->
+    <Image
+      src={bandPhotoMobile}
+      alt="Tinker's Damn Band"
+      quality={90}
+      loading="eager"
+      class="band-photo band-photo-mobile"
     />
   </div>
 
@@ -29,7 +39,12 @@ import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
   <div class="signal-interrupt">
     <div class="static-noise"></div>
     <div class="glitch-text">
-      <h2>ARE YOU SAFE NOW?</h2>
+      <h2>
+        <span class="word">ARE</span>
+        <span class="word">YOU</span>
+        <span class="word">SAFE</span>
+        <span class="word">NOW?</span>
+      </h2>
     </div>
   </div>
 
@@ -97,6 +112,25 @@ import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  /* Show mobile image on small screens, desktop on larger screens */
+  .band-photo-mobile {
+    display: block;
+  }
+
+  .band-photo-desktop {
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    .band-photo-mobile {
+      display: none;
+    }
+
+    .band-photo-desktop {
+      display: block;
+    }
   }
 
   /* Glitch Bars - Progressive Corruption */
@@ -234,6 +268,16 @@ import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
       0 0 20px rgba(227, 126, 244, 0.6),
       2px 2px 0 rgba(150, 202, 79, 0.5),
       -2px -2px 0 rgba(227, 126, 244, 0.5);
+  }
+
+  .glitch-text h2 .word {
+    display: inline;
+  }
+
+  @media (max-width: 768px) {
+    .glitch-text h2 .word {
+      display: block;
+    }
   }
 
   /* Album Reveal */
