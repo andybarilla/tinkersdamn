@@ -123,8 +123,8 @@ const uniqueId = `shows-${upcoming ? 'upcoming' : 'past'}`;
 </style>
 
 <script define:vars={{ uniqueId }}>
-    // Simulate loading delay and then show actual content
-    document.addEventListener('DOMContentLoaded', () => {
+    // Function to show content after loading delay
+    function showContent() {
         setTimeout(() => {
             const skeleton = document.getElementById(`skeleton-${uniqueId}`);
             const content = document.getElementById(uniqueId);
@@ -133,5 +133,11 @@ const uniqueId = `shows-${upcoming ? 'upcoming' : 'past'}`;
                 content.style.display = 'block';
             }
         }, 800); // Simulate loading time
-    });
+    }
+
+    // Handle initial page load
+    document.addEventListener('DOMContentLoaded', showContent);
+
+    // Handle Astro client-side navigation (view transitions)
+    document.addEventListener('astro:page-load', showContent);
 </script>

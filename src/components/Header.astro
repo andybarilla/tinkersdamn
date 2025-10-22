@@ -17,20 +17,70 @@ const { showLogo = true } = Astro.props;
     .header-container {
         background: linear-gradient(
             180deg,
-            rgba(3, 3, 3, 1) 0%,
-            rgba(3, 3, 3, 0.95) 100%
+            rgba(81, 8, 86, 0.4) 0%,
+            rgba(3, 3, 3, 0.98) 100%
         );
         padding: 1rem 0;
+        border-bottom: 1px solid rgba(227, 126, 244, 0.1);
+        box-shadow: 0 4px 20px rgba(81, 8, 86, 0.2);
+        transition: all 0.5s ease;
+    }
+
+    .header-container.scrolled {
+        background: linear-gradient(
+            180deg,
+            rgba(25, 40, 11, 0.5) 0%,
+            rgba(3, 3, 3, 0.98) 100%
+        );
+        border-bottom: 1px solid rgba(150, 202, 79, 0.15);
+        box-shadow: 0 4px 20px rgba(120, 176, 50, 0.2);
     }
 
     .logo-link {
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+        transition: all 0.3s ease;
     }
 
     .logo-link:hover {
         filter:
             drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6))
-            drop-shadow(0 0 20px rgba(150, 202, 79, 0.2));
+            drop-shadow(0 0 25px rgba(227, 126, 244, 0.4))
+            drop-shadow(0 0 35px rgba(150, 202, 79, 0.2));
         transform: scale(1.02);
     }
 </style>
+
+<script>
+    // Scroll-based color transition for header
+    const header = document.querySelector('.header-container');
+    let lastScrollY = 0;
+    let ticking = false;
+
+    function updateHeaderColor() {
+        const scrollY = window.scrollY;
+        const scrollThreshold = 300;
+
+        if (header) {
+            if (scrollY > scrollThreshold) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        lastScrollY = scrollY;
+        ticking = false;
+    }
+
+    function requestHeaderUpdate() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeaderColor);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
+
+    // Initial check
+    updateHeaderColor();
+</script>

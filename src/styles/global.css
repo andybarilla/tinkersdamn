@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @theme {
-    --font-sans: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
     --color-atlantis-50: #f5faeb;
     --color-atlantis-100: #e8f4d3;
     --color-atlantis-200: #d2ebab;
@@ -27,21 +28,98 @@
 }
 @layer base {
     body {
-        @apply bg-neutral-950 text-white;
+        background: linear-gradient(
+            180deg,
+            rgba(81, 8, 86, 0.3) 0%,     /* clairvoyant-950 */
+            rgba(3, 3, 3, 1) 20%,         /* neutral-950 */
+            rgba(3, 3, 3, 1) 80%,
+            rgba(25, 40, 11, 0.3) 100%    /* atlantis-950 */
+        );
+        background-attachment: fixed;
+        color: white;
+        font-family: var(--font-sans);
+        font-weight: 400;
+        letter-spacing: -0.011em;
+        min-height: 100vh;
     }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-display);
+        letter-spacing: -0.03em;
+    }
+
     h1 {
-        @apply text-2xl font-bold text-center text-atlantis-400;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        @apply text-center;
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 900;
+        line-height: 1.1;
+        background: linear-gradient(135deg, #96ca4f 0%, #e37ef4 50%, #b4dc7a 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+        filter: drop-shadow(0 4px 12px rgba(150, 202, 79, 0.3));
     }
+
     h2 {
-        @apply text-xl font-semibold text-atlantis-200;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        font-size: clamp(1.75rem, 3.5vw, 3rem);
+        font-weight: 800;
+        line-height: 1.2;
+        background: linear-gradient(120deg, #d24de8 0%, #96ca4f 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 8px rgba(227, 126, 244, 0.25));
     }
+
+    h3 {
+        @apply text-atlantis-300;
+        font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+        font-weight: 700;
+        line-height: 1.3;
+        text-shadow: 0 2px 8px rgba(150, 202, 79, 0.2);
+    }
+
+    h4 {
+        @apply text-clairvoyant-300;
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    h5 {
+        @apply text-atlantis-200;
+        font-size: clamp(1.125rem, 1.75vw, 1.5rem);
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    h6 {
+        @apply text-clairvoyant-200;
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: clamp(1rem, 1.25vw, 1.125rem);
+        line-height: 1.7;
+        letter-spacing: -0.011em;
+    }
+
+    strong, b {
+        font-weight: 700;
+    }
+
     a {
         @apply text-atlantis-400;
+        font-weight: 500;
         transition: color 0.2s ease, text-shadow 0.2s ease;
     }
+
     a:hover {
+        @apply text-atlantis-300;
         text-shadow: 0 0 8px rgba(150, 202, 79, 0.4);
     }
 }
@@ -90,5 +168,204 @@
 
     .hover-lift:hover {
         transform: translateY(-4px);
+    }
+
+    /* Text gradient utilities */
+    .text-gradient-primary {
+        background: linear-gradient(135deg, #96ca4f 0%, #e37ef4 50%, #b4dc7a 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 8px rgba(150, 202, 79, 0.3));
+    }
+
+    .text-gradient-secondary {
+        background: linear-gradient(120deg, #d24de8 0%, #96ca4f 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 8px rgba(227, 126, 244, 0.25));
+    }
+
+    .text-gradient-purple {
+        background: linear-gradient(135deg, #e37ef4 0%, #b92dcc 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 8px rgba(227, 126, 244, 0.3));
+    }
+
+    .text-gradient-green {
+        background: linear-gradient(135deg, #96ca4f 0%, #78b032 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 8px rgba(150, 202, 79, 0.3));
+    }
+
+    /* Font weight utilities */
+    .font-light {
+        font-weight: 300;
+    }
+
+    .font-normal {
+        font-weight: 400;
+    }
+
+    .font-medium {
+        font-weight: 500;
+    }
+
+    .font-semibold {
+        font-weight: 600;
+    }
+
+    .font-bold {
+        font-weight: 700;
+    }
+
+    .font-extrabold {
+        font-weight: 800;
+    }
+
+    .font-black {
+        font-weight: 900;
+    }
+
+    /* Font family utilities */
+    .font-display {
+        font-family: var(--font-display);
+    }
+
+    .font-body {
+        font-family: var(--font-sans);
+    }
+
+    /* Gradient background utilities */
+    .bg-gradient-purple-green {
+        background: linear-gradient(135deg, #510856 0%, #19280b 100%);
+    }
+
+    .bg-gradient-purple-green-radial {
+        background: radial-gradient(ellipse at top, rgba(81, 8, 86, 0.4) 0%, rgba(3, 3, 3, 1) 50%, rgba(25, 40, 11, 0.4) 100%);
+    }
+
+    .bg-gradient-purple-dark {
+        background: linear-gradient(180deg, rgba(81, 8, 86, 0.5) 0%, rgba(3, 3, 3, 1) 100%);
+    }
+
+    .bg-gradient-green-dark {
+        background: linear-gradient(180deg, rgba(25, 40, 11, 0.5) 0%, rgba(3, 3, 3, 1) 100%);
+    }
+
+    .bg-gradient-purple-green-horizontal {
+        background: linear-gradient(90deg, rgba(81, 8, 86, 0.3) 0%, rgba(3, 3, 3, 1) 50%, rgba(25, 40, 11, 0.3) 100%);
+    }
+
+    /* Animated gradient backgrounds */
+    .bg-gradient-animated {
+        background: linear-gradient(
+            -45deg,
+            rgba(81, 8, 86, 0.4),
+            rgba(156, 34, 169, 0.3),
+            rgba(120, 176, 50, 0.3),
+            rgba(25, 40, 11, 0.4)
+        );
+        background-size: 400% 400%;
+        animation: gradient-shift 15s ease infinite;
+    }
+
+    @keyframes gradient-shift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Color-shifting hover effects */
+    .hover-color-shift {
+        transition: all 0.4s ease;
+        position: relative;
+    }
+
+    .hover-color-shift::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(227, 126, 244, 0.1) 0%, rgba(150, 202, 79, 0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        border-radius: inherit;
+        pointer-events: none;
+    }
+
+    .hover-color-shift:hover::before {
+        opacity: 1;
+    }
+
+    .hover-color-shift:hover {
+        border-color: rgba(227, 126, 244, 0.5);
+        box-shadow: 0 0 30px rgba(227, 126, 244, 0.3);
+    }
+
+    /* Border gradient effects */
+    .border-gradient-purple-green {
+        border: 2px solid transparent;
+        background: linear-gradient(rgba(3, 3, 3, 1), rgba(3, 3, 3, 1)) padding-box,
+                    linear-gradient(135deg, #e37ef4 0%, #96ca4f 100%) border-box;
+    }
+
+    .border-gradient-animated {
+        border: 2px solid transparent;
+        background: linear-gradient(rgba(3, 3, 3, 1), rgba(3, 3, 3, 1)) padding-box,
+                    linear-gradient(45deg, #e37ef4, #96ca4f, #d24de8, #78b032) border-box;
+        background-size: 300% 300%;
+        animation: border-gradient-shift 6s ease infinite;
+    }
+
+    @keyframes border-gradient-shift {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    /* Scroll-based color transitions */
+    .scroll-color-transition {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Purple accent utilities */
+    .accent-purple-glow {
+        box-shadow: 0 0 20px rgba(227, 126, 244, 0.3),
+                    0 0 40px rgba(227, 126, 244, 0.15);
+    }
+
+    .accent-purple-border {
+        border-color: rgba(227, 126, 244, 0.4);
+    }
+
+    .text-purple-glow {
+        color: #e37ef4;
+        text-shadow: 0 0 10px rgba(227, 126, 244, 0.5),
+                     0 0 20px rgba(227, 126, 244, 0.3);
+    }
+
+    /* Hover glow effects with color shift */
+    .hover-glow-shift {
+        transition: all 0.4s ease;
+    }
+
+    .hover-glow-shift:hover {
+        box-shadow: 0 0 30px rgba(227, 126, 244, 0.4),
+                    0 0 60px rgba(150, 202, 79, 0.2);
+        transform: translateY(-2px);
     }
 }
