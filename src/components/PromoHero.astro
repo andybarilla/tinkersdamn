@@ -1,0 +1,549 @@
+---
+import { Image } from 'astro:assets';
+import albumCover from '../assets/earl-dr-cover.png';
+---
+
+<div class="promo-hero-overlay" id="promoHero">
+  <!-- Glitch bars that corrupt the screen first -->
+  <div class="glitch-bars" id="glitchBars">
+    <div class="glitch-bar" style="top: 15%; animation-delay: 0s;"></div>
+    <div class="glitch-bar" style="top: 45%; animation-delay: 0.2s;"></div>
+    <div class="glitch-bar" style="top: 75%; animation-delay: 0.4s;"></div>
+  </div>
+
+  <!-- Screen corruption overlay -->
+  <div class="screen-corruption" id="screenCorruption"></div>
+
+  <div class="signal-interrupt">
+    <div class="static-noise"></div>
+    <div class="glitch-text">
+      <h2>ARE YOU SAFE NOW?</h2>
+    </div>
+  </div>
+
+  <div class="album-reveal">
+    <div class="album-container">
+      <Image
+        src={albumCover}
+        alt="Earl Dr - New Album"
+        quality={90}
+        loading="eager"
+        class="album-cover"
+      />
+      <div class="album-info">
+        <h3>NEW ALBUM COMING</h3>
+        <p class="release-date">DECEMBER 2025</p>
+      </div>
+    </div>
+  </div>
+
+  <button class="close-promo" id="closePromo" aria-label="Close promotional message">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .promo-hero-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .promo-hero-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Glitch Bars - Progressive Corruption */
+  .glitch-bars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+  }
+
+  .promo-hero-overlay.corrupting .glitch-bars {
+    opacity: 1;
+  }
+
+  .glitch-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(
+      90deg,
+      rgba(150, 202, 79, 0.8),
+      rgba(227, 126, 244, 0.8),
+      rgba(150, 202, 79, 0.8)
+    );
+    box-shadow:
+      0 0 20px rgba(150, 202, 79, 0.8),
+      0 0 40px rgba(227, 126, 244, 0.6);
+    animation: glitchBarSlide 0.6s ease-out forwards;
+    transform: translateX(-100%);
+    mix-blend-mode: screen;
+  }
+
+  .glitch-bar::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(8px);
+  }
+
+  /* Screen Corruption Overlay */
+  .screen-corruption {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 4px,
+        rgba(150, 202, 79, 0.05) 4px,
+        rgba(150, 202, 79, 0.05) 8px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 6px,
+        rgba(227, 126, 244, 0.03) 6px,
+        rgba(227, 126, 244, 0.03) 12px
+      );
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    animation: screenFlicker 0.15s infinite;
+  }
+
+  .promo-hero-overlay.corrupting .screen-corruption {
+    animation: corruptionGrow 1.2s ease-out forwards, screenFlicker 0.15s infinite;
+  }
+
+  /* Signal Interrupt Effect */
+  .signal-interrupt {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: signalFadeIn 0.5s ease-in forwards;
+  }
+
+  .promo-hero-overlay.show-album .signal-interrupt {
+    animation: signalFadeOut 0.8s ease-out forwards;
+  }
+
+  .static-noise {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.03) 2px,
+        rgba(255, 255, 255, 0.03) 4px
+      );
+    opacity: 0.8;
+    animation: staticFlicker 0.1s infinite;
+    mix-blend-mode: overlay;
+  }
+
+  .static-noise::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    animation: noise 0.2s infinite;
+  }
+
+  .glitch-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .glitch-text h2 {
+    font-size: clamp(2rem, 8vw, 5rem);
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    animation: glitch 0.5s infinite;
+    text-shadow:
+      0 0 10px rgba(150, 202, 79, 0.8),
+      0 0 20px rgba(227, 126, 244, 0.6),
+      2px 2px 0 rgba(150, 202, 79, 0.5),
+      -2px -2px 0 rgba(227, 126, 244, 0.5);
+  }
+
+  /* Album Reveal */
+  .album-reveal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .promo-hero-overlay.show-album .album-reveal {
+    animation: albumFadeIn 1s ease-out 0.5s forwards;
+  }
+
+  .album-container {
+    text-align: center;
+    max-width: 90%;
+    padding: 2rem;
+  }
+
+  .album-cover {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow:
+      0 0 40px rgba(150, 202, 79, 0.4),
+      0 0 80px rgba(227, 126, 244, 0.3),
+      0 20px 60px rgba(0, 0, 0, 0.8);
+    animation: albumPulse 3s ease-in-out infinite;
+  }
+
+  .album-info {
+    margin-top: 2rem;
+    animation: infoSlideUp 1s ease-out 1s backwards;
+  }
+
+  .album-info h3 {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: 900;
+    color: #96ca4f;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    text-shadow:
+      0 0 20px rgba(150, 202, 79, 0.6),
+      0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+
+  .release-date {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #e37ef4;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow:
+      0 0 15px rgba(227, 126, 244, 0.6),
+      0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Close Button */
+  .close-promo {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    z-index: 10;
+  }
+
+  .promo-hero-overlay.show-album .close-promo {
+    animation: closeButtonFadeIn 0.5s ease-out 1.5s forwards;
+  }
+
+  .close-promo:hover {
+    background: rgba(150, 202, 79, 0.3);
+    border-color: #96ca4f;
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 0 20px rgba(150, 202, 79, 0.5);
+  }
+
+  .close-promo:active {
+    transform: scale(0.95) rotate(90deg);
+  }
+
+  /* Animations */
+  @keyframes signalFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes signalFadeOut {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.3);
+      filter: blur(20px);
+    }
+  }
+
+  @keyframes albumFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes infoSlideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes closeButtonFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) rotate(-180deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-3px, 3px);
+    }
+    40% {
+      transform: translate(3px, -3px);
+    }
+    60% {
+      transform: translate(-3px, -3px);
+    }
+    80% {
+      transform: translate(3px, 3px);
+    }
+  }
+
+  @keyframes staticFlicker {
+    0%, 100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes noise {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    10% {
+      transform: translate(-5%, -5%);
+    }
+    20% {
+      transform: translate(5%, 5%);
+    }
+    30% {
+      transform: translate(-5%, 5%);
+    }
+    40% {
+      transform: translate(5%, -5%);
+    }
+    50% {
+      transform: translate(-5%, 0);
+    }
+    60% {
+      transform: translate(5%, 0);
+    }
+    70% {
+      transform: translate(0, -5%);
+    }
+    80% {
+      transform: translate(0, 5%);
+    }
+    90% {
+      transform: translate(-5%, -5%);
+    }
+  }
+
+  @keyframes albumPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow:
+        0 0 40px rgba(150, 202, 79, 0.4),
+        0 0 80px rgba(227, 126, 244, 0.3),
+        0 20px 60px rgba(0, 0, 0, 0.8);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow:
+        0 0 60px rgba(150, 202, 79, 0.6),
+        0 0 100px rgba(227, 126, 244, 0.5),
+        0 20px 70px rgba(0, 0, 0, 0.9);
+    }
+  }
+
+  @keyframes glitchBarSlide {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(150%);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes corruptionGrow {
+    0% {
+      opacity: 0;
+      clip-path: circle(0% at 50% 50%);
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 0.8;
+      clip-path: circle(150% at 50% 50%);
+    }
+  }
+
+  @keyframes screenFlicker {
+    0%, 90%, 100% {
+      filter: brightness(1);
+    }
+    93%, 97% {
+      filter: brightness(0.8);
+    }
+    95% {
+      filter: brightness(1.2);
+    }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .close-promo {
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+    }
+
+    .album-container {
+      padding: 1rem;
+    }
+
+    .album-info {
+      margin-top: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const promoHero = document.getElementById('promoHero');
+    const closeButton = document.getElementById('closePromo');
+
+    // Check if user has already seen the promo
+    const hasSeenPromo = false; // sessionStorage.getItem('hasSeenPromo');
+
+    if (!hasSeenPromo && promoHero) {
+      // Progressive interrupt sequence
+      setTimeout(() => {
+        // Step 1: Start corrupting the screen (1.5 seconds)
+        promoHero.classList.add('active');
+        promoHero.classList.add('corrupting');
+
+        setTimeout(() => {
+          // Step 2: Full signal interrupt takes over (after corruption builds)
+          promoHero.classList.remove('corrupting');
+
+          // Step 3: After showing "ARE YOU SAFE NOW?" for 3 seconds, transition to album
+          setTimeout(() => {
+            promoHero.classList.add('show-album');
+          }, 3000);
+        }, 1500);
+      }, 3000);
+    }
+
+    // Close button functionality
+    if (closeButton && promoHero) {
+      closeButton.addEventListener('click', () => {
+        promoHero.style.animation = 'signalFadeOut 0.5s ease-out forwards';
+        setTimeout(() => {
+          promoHero.classList.remove('active');
+          promoHero.classList.remove('show-album');
+          promoHero.classList.remove('corrupting');
+          sessionStorage.setItem('hasSeenPromo', 'true');
+        }, 500);
+      });
+    }
+
+    // Optional: Allow ESC key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && promoHero?.classList.contains('active')) {
+        closeButton?.click();
+      }
+    });
+  });
+</script>
