@@ -47,7 +47,7 @@ const uniqueId = `shows-${upcoming ? 'upcoming' : 'past'}`;
     {data.slice(0).reverse().map((show, index) => (
             <li class="border border-gray-700 rounded-lg show-item" style={`animation-delay: ${index * 0.1}s`}>
                 <div class="flex gap-4">
-                    <div class=`${calendarBgColor} text-black w-20 flex items-center`>
+                    <div class=`${calendarBgColor} text-black w-20 flex items-center min-w-20`>
                         <div class="flex flex-col text-center w-full">
                             <div class="font-bold">{days[new Date(show.datetime).getDay()]}</div>
                             <div class="text-4xl font-bold">{new Date(show.datetime).getDate()}</div>
