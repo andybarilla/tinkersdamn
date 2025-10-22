@@ -34,10 +34,12 @@ jobs:
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
           SOURCE: "dist/"
           TARGET: "/var/www/tinkersdamn"
-          ARGS: "-avzr --delete --omit-dir-times --no-perms --no-owner --no-group --exclude=art --exclude=mp3s --exclude=promo --exclude=setlists"
+          ARGS: "-avzr --delete --omit-dir-times --no-perms --exclude=art --exclude=mp3s --exclude=promo --exclude=setlists"
           SCRIPT_BEFORE: |
             whoami
             ls -al
           SCRIPT_AFTER: |
+            echo "Setting ownership to rslsync:rslsync"
+            sudo chown -R rslsync:rslsync /var/www/tinkersdamn
             echo "Deployment completed successfully"
             ls -al /var/www/tinkersdamn
