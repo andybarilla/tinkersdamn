@@ -625,7 +625,7 @@ import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
     const closeButton = document.getElementById('closePromo');
 
     // Check if user has already seen the promo
-    const hasSeenPromo = false; // sessionStorage.getItem('hasSeenPromo');
+    const hasSeenPromo = sessionStorage.getItem('hasSeenPromo');
 
     if (!hasSeenPromo && promoHero) {
       // Progressive interrupt sequence
