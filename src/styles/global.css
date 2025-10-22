@@ -31,11 +31,64 @@
     }
     h1 {
         @apply text-2xl font-bold text-center text-atlantis-400;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
     h2 {
         @apply text-xl font-semibold text-atlantis-200;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     }
     a {
         @apply text-atlantis-400;
+        transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+    a:hover {
+        text-shadow: 0 0 8px rgba(150, 202, 79, 0.4);
+    }
+}
+
+@layer utilities {
+    /* Glassmorphism utility classes */
+    .glass {
+        backdrop-filter: blur(10px) saturate(180%);
+        background: rgba(15, 15, 15, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-dark {
+        backdrop-filter: blur(12px) saturate(180%);
+        background: rgba(3, 3, 3, 0.8);
+        border: 1px solid rgba(150, 202, 79, 0.1);
+    }
+
+    /* Elevated shadow utilities */
+    .shadow-elevated {
+        box-shadow:
+            0 4px 6px rgba(0, 0, 0, 0.3),
+            0 1px 3px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(150, 202, 79, 0.05);
+    }
+
+    .shadow-elevated-lg {
+        box-shadow:
+            0 8px 16px rgba(0, 0, 0, 0.4),
+            0 4px 8px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(150, 202, 79, 0.1);
+    }
+
+    .shadow-glow {
+        box-shadow: 0 0 20px rgba(150, 202, 79, 0.2);
+    }
+
+    .shadow-glow-purple {
+        box-shadow: 0 0 20px rgba(227, 126, 244, 0.2);
+    }
+
+    /* Smooth hover lift */
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-4px);
     }
 }

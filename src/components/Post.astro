@@ -23,21 +23,88 @@ const BUTTONS = [
 const post = await getEntry('blog', id);
 const {Content} = await render(post);
 ---
-<div class="border-clairvoyant-950 border-2 rounded-lg p-6 mb-4 bg-neutral-900">
-    <div class="text-2xl font-bold text-atlantis-400 text-center"><a href=`/posts/${post?.id}`>{post?.data.title}</a>
+<div class="post-card border-clairvoyant-950 border-2 rounded-lg p-6 mb-6 bg-neutral-900 transition-all duration-300 fade-slide-in">
+    <div class="text-2xl font-bold text-atlantis-400 text-center mb-2">
+        <a href=`/posts/${post?.id}` class="post-title-link hover:text-atlantis-200 transition-colors duration-200">
+            {post?.data.title}
+        </a>
     </div>
-    <div class="text-sm text-gray-400 text-center">{new Date(post?.data?.pubDate).toLocaleDateString()}</div>
+    <div class="text-sm text-gray-400 text-center mb-6">{new Date(post?.data?.pubDate).toLocaleDateString()}</div>
 
-    <Content/>
+    <div class="post-content">
+        <Content/>
+    </div>
 
-    <div class="flex justify-center gap-2 pt-6">
-        Share to <SocialShare
+    <div class="flex justify-center gap-2 pt-6 border-t border-clairvoyant-950/30 mt-6">
+        <span class="text-gray-400 text-sm">Share to</span>
+        <SocialShare
             buttons={BUTTONS}
-                description={post?.data?.description}
-                title={post?.data?.title} />
+            description={post?.data?.description}
+            title={post?.data?.title} />
     </div>
 
 </div>
+
+<style>
+    @keyframes fadeSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-slide-in {
+        animation: fadeSlideIn 0.6s ease-out forwards;
+        opacity: 0;
+    }
+
+    .post-card {
+        box-shadow:
+            0 4px 6px rgba(0, 0, 0, 0.3),
+            0 1px 3px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(150, 202, 79, 0.05);
+        backdrop-filter: blur(10px);
+        background: linear-gradient(
+            135deg,
+            rgba(23, 23, 23, 0.95) 0%,
+            rgba(15, 15, 15, 0.98) 100%
+        );
+    }
+
+    .post-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            0 12px 24px rgba(0, 0, 0, 0.4),
+            0 6px 12px rgba(0, 0, 0, 0.3),
+            0 0 20px rgba(150, 202, 79, 0.1),
+            inset 0 1px 0 rgba(150, 202, 79, 0.1);
+        border-color: rgba(150, 202, 79, 0.3);
+    }
+
+    .post-content {
+        line-height: 1.7;
+    }
+
+    .post-content :global(p) {
+        margin-bottom: 1rem;
+        color: rgba(229, 229, 229, 0.9);
+    }
+
+    .post-content :global(a) {
+        color: #96ca4f;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+    }
+
+    .post-content :global(a:hover) {
+        border-bottom-color: #96ca4f;
+    }
+</style>
 
 <slot name="astro-social-share-css">
     <style is:global>
@@ -48,10 +115,17 @@ const {Content} = await render(post);
         .astro-social-share a {
             text-decoration: none;
             margin-right: 10px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: inline-block;
+        }
+        .astro-social-share a:hover {
+            transform: translateY(-2px);
+            opacity: 0.8;
         }
         .astro-social-share svg {
             height: 18px;
             fill: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
     </style>
 </slot>

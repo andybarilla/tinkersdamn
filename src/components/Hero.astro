@@ -1,0 +1,289 @@
+---
+import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
+import logo from '../assets/tinkers-damn-logo.png'
+import { Image } from 'astro:assets';
+---
+
+<section class="hero-section relative overflow-hidden">
+  <!-- Background Image with Parallax -->
+  <div class="hero-image-container absolute inset-0">
+    <Image
+      src={bandPhoto}
+      alt="Tinker's Damn band photo"
+      class="hero-image w-full h-full object-cover"
+      loading="eager"
+      quality={90}
+    />
+    <!-- Gradient Overlays -->
+    <div class="hero-gradient-1"></div>
+    <div class="hero-gradient-2"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="hero-content relative z-10 flex flex-col items-center justify-center min-h-[100vh] px-4 text-center">
+    <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white">
+      <Image src={logo} alt="Tinker's Damn Logo" class="hero-logo" />
+    </h1>
+    <p class="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-8 text-gray-100 max-w-3xl">
+      Grunge & Stoner Rock from Colorado Springs
+    </p>
+    <div class="hero-cta-buttons flex flex-wrap gap-4 justify-center">
+      <a href="/shows" class="hero-button hero-button-primary">
+        See Shows
+      </a>
+      <a href="/music" class="hero-button hero-button-secondary">
+        Listen Now
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <a href="#navigation-start" class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 cursor-pointer" aria-label="Scroll to navigation">
+    <div class="scroll-arrow"></div>
+  </a>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .hero-image-container {
+    z-index: 0;
+  }
+
+  .hero-image {
+    animation: subtle-zoom 20s ease-in-out infinite alternate;
+    transform-origin: center center;
+  }
+
+  /* Gradient overlays for depth and readability */
+  .hero-gradient-1 {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(81, 8, 86, 0.7) 0%,     /* clairvoyant-950 */
+      rgba(81, 8, 86, 0.4) 40%,
+      rgba(3, 3, 3, 0.6) 100%      /* neutral-950 */
+    );
+    z-index: 1;
+  }
+
+  .hero-gradient-2 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(3, 3, 3, 0.4) 70%
+    );
+    z-index: 2;
+  }
+
+  /* Title animation */
+  .hero-title {
+    animation: fade-in-up 1s ease-out 0.2s both;
+    text-shadow:
+      0 0 20px rgba(150, 202, 79, 0.3),
+      0 0 40px rgba(150, 202, 79, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.02em;
+  }
+
+  /* Responsive logo sizing */
+  .hero-logo {
+    width: 200px;
+    height: auto;
+  }
+
+  @media (min-width: 640px) {
+    .hero-logo {
+      width: 280px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-logo {
+      width: 350px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-logo {
+      width: 450px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-logo {
+      width: 500px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .hero-logo {
+      width: 550px;
+    }
+  }
+
+  /* Subtitle animation */
+  .hero-subtitle {
+    animation: fade-in-up 1s ease-out 0.4s both;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  /* Button container animation */
+  .hero-cta-buttons {
+    animation: fade-in-up 1s ease-out 0.6s both;
+  }
+
+  /* Button styles */
+  .hero-button {
+    padding: 0.875rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-button-primary {
+    background: linear-gradient(135deg, #96ca4f 0%, #78b032 100%);
+    color: #030303;
+    border: 2px solid transparent;
+  }
+
+  .hero-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(150, 202, 79, 0.4);
+    background: linear-gradient(135deg, #a8d66f 0%, #8ac042 100%);
+  }
+
+  .hero-button-secondary {
+    background: transparent;
+    color: #96ca4f;
+    border: 2px solid #96ca4f;
+  }
+
+  .hero-button-secondary:hover {
+    transform: translateY(-2px);
+    background: rgba(150, 202, 79, 0.1);
+    box-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(150, 202, 79, 0.3);
+    border-color: #a8d66f;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    animation: fade-in 1s ease-out 1s both, bounce 2s ease-in-out 2s infinite;
+  }
+
+  .scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-left: 3px solid #96ca4f;
+    border-bottom: 3px solid #96ca4f;
+    transform: rotate(-45deg);
+    opacity: 0.7;
+  }
+
+  /* Keyframe animations */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes subtle-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Parallax effect with JavaScript */
+  .hero-parallax {
+    will-change: transform;
+  }
+</style>
+
+<script>
+  // Parallax scroll effect
+  const heroImage = document.querySelector('.hero-image') as HTMLElement;
+  const heroContent = document.querySelector('.hero-content') as HTMLElement;
+
+  let ticking = false;
+
+  function updateParallax() {
+    const scrolled = window.scrollY;
+    const parallaxSpeed = 0.5;
+
+    if (heroImage) {
+      heroImage.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.05)`;
+    }
+
+    if (heroContent) {
+      heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+
+    ticking = false;
+  }
+
+  function requestParallaxUpdate() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+
+  // Initial update
+  updateParallax();
+
+  // Smooth scroll for the arrow indicator
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector('#navigation-start');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+</script>

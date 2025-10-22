@@ -2,10 +2,35 @@
 import {Image} from 'astro:assets';
 import image from '../assets/tinkers-damn-logo.png'
 import Navigation from "./Navigation.astro";
+
+const { showLogo = true } = Astro.props;
 ---
-<header class="flex flex-col justify-center items-center">
-    <a href="/">
+<header class="header-container flex flex-col justify-center items-center">
+    {showLogo && (
+    <a href="/" class="logo-link transition-all duration-300">
         <Image src={image} alt="Tinker's Damn Logo" height={150}/>
-    </a>
+    </a>)}
     <Navigation/>
 </header>
+
+<style>
+    .header-container {
+        background: linear-gradient(
+            180deg,
+            rgba(3, 3, 3, 1) 0%,
+            rgba(3, 3, 3, 0.95) 100%
+        );
+        padding: 1rem 0;
+    }
+
+    .logo-link {
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    .logo-link:hover {
+        filter:
+            drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6))
+            drop-shadow(0 0 20px rgba(150, 202, 79, 0.2));
+        transform: scale(1.02);
+    }
+</style>

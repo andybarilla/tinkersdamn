@@ -20,13 +20,32 @@ const formatDescription = (description: string): string => {
     return withLinks.replace(/(?:\r\n|\r|\n)/g, '<br>');
 }
 
+const uniqueId = `shows-${upcoming ? 'upcoming' : 'past'}`;
 ---
+<!-- Loading skeleton initially shown, then hidden when data loads -->
+<div id={`skeleton-${uniqueId}`} class="skeleton-container space-y-4">
+    {[1, 2, 3].map(() => (
+        <div class="skeleton-item border border-gray-700 rounded-lg animate-pulse">
+            <div class="flex gap-4 p-4">
+                <div class="skeleton-calendar bg-gray-700 w-20 h-24 rounded"></div>
+                <div class="flex-1 space-y-3">
+                    <div class="skeleton-line bg-gray-700 h-6 w-3/4 rounded"></div>
+                    <div class="skeleton-line bg-gray-700 h-4 w-1/2 rounded"></div>
+                    <div class="skeleton-line bg-gray-700 h-4 w-2/3 rounded"></div>
+                </div>
+            </div>
+        </div>
+    ))}
+</div>
+
+<!-- Actual data -->
+<div id={uniqueId} style="display: none;">
 {data.length === 0 ? (
 <p class="text-center text-gray-400">No {upcoming ? "upcoming" : "past"} shows found.</p>
     ) : (
 <ul class="space-y-4">
-    {data.slice(0).reverse().map(show => (
-            <li class="border border-gray-700 rounded-lg">
+    {data.slice(0).reverse().map((show, index) => (
+            <li class="border border-gray-700 rounded-lg show-item" style={`animation-delay: ${index * 0.1}s`}>
                 <div class="flex gap-4">
                     <div class=`${calendarBgColor} text-black w-20 flex items-center`>
                         <div class="flex flex-col text-center w-full">
@@ -55,3 +74,64 @@ const formatDescription = (description: string): string => {
     ))}
 </ul>
         )}
+</div>
+
+<style>
+    @keyframes fadeSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .show-item {
+        animation: fadeSlideIn 0.6s ease-out forwards;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .show-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(150, 202, 79, 0.1);
+        border-color: rgba(150, 202, 79, 0.3);
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .skeleton-line {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .skeleton-calendar {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+</style>
+
+<script define:vars={{ uniqueId }}>
+    // Simulate loading delay and then show actual content
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const skeleton = document.getElementById(`skeleton-${uniqueId}`);
+            const content = document.getElementById(uniqueId);
+            if (skeleton && content) {
+                skeleton.style.display = 'none';
+                content.style.display = 'block';
+            }
+        }, 800); // Simulate loading time
+    });
+</script>
