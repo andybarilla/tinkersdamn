@@ -32,7 +32,7 @@ import { Image } from 'astro:assets';
   <!-- Content -->
   <div class="hero-content relative z-10 flex flex-col items-center justify-center min-h-[100vh] px-4 text-center">
     <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white">
-      <Image src={logo} alt="Tinker's Damn Logo" class="hero-logo" />
+      <Image src={logo} alt="Tinker's Damn Logo" class="hero-logo" id="heroLogo" />
     </h1>
     <p class="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-8 text-gray-100 max-w-3xl">
       Grunge & Stoner Rock from Colorado Springs
@@ -370,6 +370,16 @@ import { Image } from 'astro:assets';
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+    });
+  }
+
+  // Logo hover triggers PromoHero
+  const heroLogo = document.getElementById('heroLogo');
+  if (heroLogo) {
+    heroLogo.addEventListener('click', () => {
+      // Trigger the promo hero show event
+      const event = new CustomEvent('showPromoHero');
+      window.dispatchEvent(event);
     });
   }
 </script>

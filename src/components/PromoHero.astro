@@ -624,25 +624,37 @@ import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
     const promoHero = document.getElementById('promoHero');
     const closeButton = document.getElementById('closePromo');
 
-    // Check if user has already seen the promo
+    // Function to trigger the promo sequence
+    function triggerPromoSequence() {
+      if (!promoHero) return;
+
+      // Progressive interrupt sequence
+      // Step 1: Start corrupting the screen (1.5 seconds)
+      promoHero.classList.add('active');
+      promoHero.classList.add('corrupting');
+
+      setTimeout(() => {
+        // Step 2: Full signal interrupt takes over (after corruption builds)
+        promoHero.classList.remove('corrupting');
+
+        // Step 3: After showing "ARE YOU SAFE NOW?" for 3 seconds, transition to album
+        setTimeout(() => {
+          promoHero.classList.add('show-album');
+        }, 3000);
+      }, 1500);
+    }
+
+    // Listen for custom event from logo hover
+    window.addEventListener('showPromoHero', () => {
+      triggerPromoSequence();
+    });
+
+    // Check if user has already seen the promo (auto-play on page load)
     const hasSeenPromo = sessionStorage.getItem('hasSeenPromo');
 
     if (!hasSeenPromo && promoHero) {
-      // Progressive interrupt sequence
       setTimeout(() => {
-        // Step 1: Start corrupting the screen (1.5 seconds)
-        promoHero.classList.add('active');
-        promoHero.classList.add('corrupting');
-
-        setTimeout(() => {
-          // Step 2: Full signal interrupt takes over (after corruption builds)
-          promoHero.classList.remove('corrupting');
-
-          // Step 3: After showing "ARE YOU SAFE NOW?" for 3 seconds, transition to album
-          setTimeout(() => {
-            promoHero.classList.add('show-album');
-          }, 3000);
-        }, 1500);
+        triggerPromoSequence();
       }, 3000);
     }
 
