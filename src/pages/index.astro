@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar.astro";
 import {getCollection} from 'astro:content';
 import Post from "../components/Post.astro";
 import Hero from "../components/Hero.astro";
-import Gallery from "../components/Gallery.astro";
+import PromoHero from "../components/PromoHero.astro";
 import { ClientRouter } from 'astro:transitions';
 
 const allPosts = (await getCollection('blog'))
@@ -23,13 +23,16 @@ const allPosts = (await getCollection('blog'))
 </head>
 <body class="bg-neutral-950">
 
+<!-- Promotional Hero Overlay -->
+<PromoHero/>
+
 <!-- Full-width Hero Section -->
 <Hero/>
 
 <div id="navigation-start">
     <Header showLogo={false}/>
 </div>
-
+Ø
 <!-- Regular content with sidebar layout -->
 <div class="flex">
     <div class="p-5 lg:max-w-6xl md:max-w-4xl w-full mx-auto">
