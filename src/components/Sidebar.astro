@@ -1,7 +1,35 @@
 <div class="sidebar-container flex flex-col justify-center w-full gap-4 py-4 px-2">
-    <div class="sidebar-card rounded-lg p-4 shadow-lg">
-        <h3 class="sidebar-title text-lg font-bold text-atlantis-400 mb-3 text-center">Stay Connected</h3>
-        <iframe class="scaled-frame rounded-md" src="https://bandsintown.com/artist/3369257/email_signup_form?headerTextColor=rgba(255,255,255,1)&backgroundColor=rgba(81,8,86,1)&ctaBackgroundColor=rgba(150,202,79,1)&title=Mailing List&headerTextStyle=normal&headerText=Sign up to get the latest updates&font=Gill Sans&ctaIcon=show&ctaBorderRadius=4px&ctaBorderWidth=2px&ctaBorderColor=rgba(150,202,79,1)&ctaFontColor=rgba(0,0,0,1)&alignment=center&emailInputField=hide&ctaLabel=Subscribe&layout=narrow&locale=en" width="100%" height="220px" title="newsletter-widget"></iframe>
+    <div class="sidebar-card rounded-xl p-6 relative overflow-hidden">
+        <!-- Decorative corner accent -->
+        <div class="corner-accent"></div>
+        <div class="corner-accent-bottom"></div>
+
+        <!-- Animated border glow -->
+        <div class="border-glow"></div>
+
+        <!-- Content -->
+        <div class="relative z-10">
+            <div class="title-container mb-4">
+                <div class="title-decoration"></div>
+                <h3 class="sidebar-title text-xl font-bold text-atlantis-400 text-center">
+                    Stay Connected
+                </h3>
+                <div class="title-decoration"></div>
+            </div>
+
+            <div class="frame-wrapper">
+                <iframe
+                    class="scaled-frame rounded-lg"
+                    src="https://bandsintown.com/artist/3369257/email_signup_form?headerTextColor=rgba(255,255,255,1)&backgroundColor=rgba(81,8,86,1)&ctaBackgroundColor=rgba(150,202,79,1)&title=Mailing List&headerTextStyle=normal&headerText=Sign up to get the latest updates&font=Playfair Display&ctaIcon=hide&ctaBorderRadius=4px&ctaBorderWidth=2px&ctaBorderColor=rgba(150,202,79,1)&ctaFontColor=rgba(0,0,0,1)&alignment=center&emailInputField=hide&ctaLabel=Subscribe&layout=narrow&locale=en"
+                    width="100%"
+                    height="260px"
+                    title="newsletter-widget">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Background pattern -->
+        <div class="bg-pattern"></div>
     </div>
 </div>
 
@@ -15,35 +43,195 @@
 
     .sidebar-card {
         background: linear-gradient(
-            135deg,
-            rgba(23, 23, 23, 0.6) 0%,
-            rgba(15, 15, 15, 0.8) 100%
+            145deg,
+            rgba(81, 8, 86, 0.95) 0%,
+            rgba(51, 5, 54, 0.98) 50%,
+            rgba(30, 3, 32, 1) 100%
         );
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(81, 8, 86, 0.5);
+        border: 2px solid transparent;
         box-shadow:
-            0 8px 16px rgba(0, 0, 0, 0.4),
-            0 4px 8px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(150, 202, 79, 0.1);
-        transition: all 0.3s ease;
+            0 0 0 1px rgba(150, 202, 79, 0.4),
+            0 20px 40px rgba(81, 8, 86, 0.6),
+            0 10px 20px rgba(0, 0, 0, 0.8),
+            inset 0 1px 0 rgba(150, 202, 79, 0.2),
+            inset 0 -1px 0 rgba(81, 8, 86, 0.8);
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sidebar-card::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(
+            135deg,
+            rgba(150, 202, 79, 0.6) 0%,
+            rgba(81, 8, 86, 0.8) 25%,
+            rgba(81, 8, 86, 0.8) 75%,
+            rgba(150, 202, 79, 0.6) 100%
+        );
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0.8;
     }
 
     .sidebar-card:hover {
-        transform: translateY(-2px);
+        transform: translateY(-4px) scale(1.01);
         box-shadow:
-            0 12px 24px rgba(0, 0, 0, 0.5),
-            0 6px 12px rgba(0, 0, 0, 0.4),
-            0 0 20px rgba(150, 202, 79, 0.15),
-            inset 0 1px 0 rgba(150, 202, 79, 0.15);
-        border-color: rgba(150, 202, 79, 0.3);
+            0 0 0 1px rgba(150, 202, 79, 0.6),
+            0 25px 50px rgba(81, 8, 86, 0.8),
+            0 15px 30px rgba(0, 0, 0, 0.9),
+            0 0 60px rgba(150, 202, 79, 0.15),
+            inset 0 1px 0 rgba(150, 202, 79, 0.3),
+            inset 0 -1px 0 rgba(81, 8, 86, 0.9);
+    }
+
+    .sidebar-card:hover::before {
+        opacity: 1;
+    }
+
+    /* Animated border glow */
+    .border-glow {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        opacity: 0;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(150, 202, 79, 0.3),
+            transparent
+        );
+        animation: shimmer 3s infinite;
+        pointer-events: none;
+    }
+
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%) rotate(45deg);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(200%) rotate(45deg);
+            opacity: 0;
+        }
+    }
+
+    /* Corner accents */
+    .corner-accent,
+    .corner-accent-bottom {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border: 3px solid rgba(150, 202, 79, 0.5);
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    .corner-accent {
+        top: -2px;
+        right: -2px;
+        border-left: none;
+        border-bottom: none;
+        border-top-right-radius: 0.75rem;
+    }
+
+    .corner-accent-bottom {
+        bottom: -2px;
+        left: -2px;
+        border-right: none;
+        border-top: none;
+        border-bottom-left-radius: 0.75rem;
+    }
+
+    .sidebar-card:hover .corner-accent,
+    .sidebar-card:hover .corner-accent-bottom {
+        border-color: rgba(150, 202, 79, 0.8);
+    }
+
+    /* Title styling */
+    .title-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .title-decoration {
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(150, 202, 79, 0.6),
+            transparent
+        );
+        position: relative;
+    }
+
+    .title-decoration::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: rgba(150, 202, 79, 0.8);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px rgba(150, 202, 79, 0.6);
     }
 
     .sidebar-title {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        letter-spacing: 0.02em;
+        text-shadow:
+            0 0 20px rgba(150, 202, 79, 0.5),
+            0 2px 4px rgba(0, 0, 0, 0.8);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+    /* Frame wrapper */
+    .frame-wrapper {
+        position: relative;
+        padding: 3px;
+        background: linear-gradient(
+            135deg,
+            rgba(150, 202, 79, 0.3),
+            rgba(81, 8, 86, 0.3)
+        );
+        border-radius: 0.5rem;
     }
 
     .scaled-frame {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        display: block;
+        box-shadow:
+            0 8px 16px rgba(0, 0, 0, 0.6),
+            inset 0 0 0 1px rgba(150, 202, 79, 0.1);
+        border: 2px solid rgba(150, 202, 79, 0.2);
+    }
+
+    /* Background pattern */
+    .bg-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.03;
+        background-image:
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(150, 202, 79, 0.1) 10px,
+                rgba(150, 202, 79, 0.1) 20px
+            );
+        pointer-events: none;
+        border-radius: inherit;
+    }
+
+    .sidebar-card:hover .bg-pattern {
+        opacity: 0.05;
     }
 </style>

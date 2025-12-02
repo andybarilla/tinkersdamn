@@ -5,12 +5,14 @@ import MusicNote from './icons/MusicNote.astro';
 import Video from './icons/Video.astro';
 import Mail from './icons/Mail.astro';
 import Info from './icons/Info.astro';
+import Bluesky from './icons/Bluesky.astro';
+import Bandcamp from "./icons/Bandcamp.astro";
 ---
 
 <nav class="nav-bar bg-clairvoyant-950 w-full sticky top-0 z-50">
-    <div class="container mx-auto px-2">
+    <div class="px-2 w-full">
         <div class="flex items-center justify-between">
-            <div class="hidden md:flex w-full justify-between">
+            <div class="hidden md:flex">
                 <!-- Navigation Links with Icons -->
                 <a href="/#navigation-start" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
                     <Guitar class="w-5 h-5" />
@@ -35,6 +37,15 @@ import Info from './icons/Info.astro';
                 <a href="/about" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
                     <Info class="w-5 h-5" />
                     <span>About</span>
+                </a>
+            </div>
+            <div class="hidden md:flex w-full justify-end">
+                <!-- Social Links -->
+                <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" class="social-link text-gray-50 hover:text-[#61929C] py-2 px-2 rounded transition-colors duration-200 flex items-center">
+                    <Bandcamp class="w-5 h-5" />
+                </a>
+                <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" class="social-link text-gray-50 hover:text-[#1185fe] py-2 px-2 rounded transition-colors duration-200 flex items-center">
+                    <Bluesky class="w-5 h-5" />
                 </a>
             </div>
             <!-- Mobile Menu Button -->

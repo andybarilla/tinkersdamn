@@ -41,5 +41,7 @@ jobs:
           SCRIPT_AFTER: |
             echo "Setting ownership to rslsync:rslsync"
             sudo chown -R rslsync:rslsync /var/www/tinkersdamn
+            echo "Setting group write permissions"
+            sudo chmod -R ug+rw /var/www/tinkersdamn
             echo "Deployment completed successfully"
             ls -al /var/www/tinkersdamn
