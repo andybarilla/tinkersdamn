@@ -1,4 +1,4 @@
-name: Build and Deploy to SSH
+name: Deploy tinkersdamnband.com
 
 on:
   push:
@@ -9,7 +9,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,22 +25,18 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
-      - name: Deploy to SSH server
+      - name: Set up SSH known hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Deploy to VPS
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          REMOTE_USER: deploy
           SOURCE: "dist/"
-          TARGET: "/var/www/tinkersdamn"
-          ARGS: "-avzr --delete --omit-dir-times --no-perms --exclude=art --exclude=mp3s --exclude=promo --exclude=setlists"
-          SCRIPT_BEFORE: |
-            whoami
-            ls -al
-          SCRIPT_AFTER: |
-            echo "Setting ownership to rslsync:rslsync"
-            sudo chown -R rslsync:rslsync /var/www/tinkersdamn
-            echo "Setting group write permissions"
-            sudo chmod -R ug+rw /var/www/tinkersdamn
-            echo "Deployment completed successfully"
-            ls -al /var/www/tinkersdamn
+          TARGET: "/var/www/tinkersdamnband.com"
+          ARGS: "-avzr --delete --chmod=D755,F644 --exclude=art --exclude=mp3s --exclude=promo --exclude=setlists"
