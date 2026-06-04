@@ -7,18 +7,34 @@ import Post from "../components/Post.astro";
 import Hero from "../components/Hero.astro";
 import PromoHero from "../components/PromoHero.astro";
 import { ClientRouter } from 'astro:transitions';
+import ogImage from '../assets/bandphoto2022adjusted2.jpg';
 
 const allPosts = (await getCollection('blog'))
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const description = "Original grunge, stoner, and psychedelic rock from Colorado Springs. New album From the Depths of Earl Drive out now.";
+const ogImageUrl = new URL(ogImage.src, Astro.site);
 ---
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
     <meta name="generator" content={Astro.generator}/>
-    <title>Tinker's Damn</title>
+    <title>Tinker's Damn — Grunge & Stoner Rock from Colorado Springs</title>
+    <meta name="description" content={description}/>
+    <meta property="og:title" content="Tinker's Damn"/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content={ogImageUrl}/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Tinker's Damn"/>
+    <meta name="twitter:description" content={description}/>
+    <meta name="twitter:image" content={ogImageUrl}/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <ClientRouter />
 </head>
 <body class="bg-neutral-950">

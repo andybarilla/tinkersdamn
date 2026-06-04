@@ -58,8 +58,9 @@ import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
         class="album-cover"
       />
       <div class="album-info">
-        <h3>NEW ALBUM COMING</h3>
-        <p class="release-date">DECEMBER 2025</p>
+        <h3>OUT NOW</h3>
+        <p class="release-date">From the Depths of Earl Drive</p>
+        <a class="listen-link" href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer">Listen on Bandcamp</a>
       </div>
     </div>
   </div>
@@ -599,6 +600,43 @@ import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
     }
   }
 
+  /* Listen CTA on the album reveal */
+  .listen-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #96ca4f 0%, #78b032 100%);
+    color: #030303;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(150, 202, 79, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .listen-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(150, 202, 79, 0.6);
+    color: #030303;
+  }
+
+  /* Honor reduced-motion: skip the flashing/glitch, show the album cleanly */
+  @media (prefers-reduced-motion: reduce) {
+    .promo-hero-overlay *,
+    .promo-hero-overlay::before {
+      animation: none !important;
+    }
+    .promo-hero-overlay.show-album .album-reveal {
+      opacity: 1;
+      transform: none;
+    }
+    .promo-hero-overlay.show-album .close-promo {
+      opacity: 1;
+    }
+  }
+
   /* Responsive Adjustments */
   @media (max-width: 768px) {
     .close-promo {
@@ -623,10 +661,17 @@ import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
   document.addEventListener('DOMContentLoaded', () => {
     const promoHero = document.getElementById('promoHero');
     const closeButton = document.getElementById('closePromo');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Function to trigger the promo sequence
     function triggerPromoSequence() {
       if (!promoHero) return;
+
+      // Reduced motion: skip the glitch/flash, reveal the album directly
+      if (prefersReducedMotion) {
+        promoHero.classList.add('active', 'show-album');
+        return;
+      }
 
       // Progressive interrupt sequence
       // Step 1: Start corrupting the screen (1.5 seconds)
@@ -649,8 +694,8 @@ import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
       triggerPromoSequence();
     });
 
-    // Check if user has already seen the promo (auto-play on page load)
-    const hasSeenPromo = sessionStorage.getItem('hasSeenPromo');
+    // Check if user has already seen the promo (auto-play once per visitor)
+    const hasSeenPromo = localStorage.getItem('hasSeenPromo');
 
     if (!hasSeenPromo && promoHero) {
       setTimeout(() => {
@@ -666,7 +711,7 @@ import bandPhotoMobile from '../assets/bandphoto2022mobile.jpg';
           promoHero.classList.remove('active');
           promoHero.classList.remove('show-album');
           promoHero.classList.remove('corrupting');
-          sessionStorage.setItem('hasSeenPromo', 'true');
+          localStorage.setItem('hasSeenPromo', 'true');
         }, 500);
       });
     }
