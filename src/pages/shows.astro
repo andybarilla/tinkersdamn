@@ -1,13 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Panel from "../components/Panel.astro";
 import Bandcamp from "../components/Bandcamp.astro";
 ---
 <Layout title="Shows" description="Upcoming and past Tinker's Damn shows around Colorado Springs and the Front Range.">
-    <h1 class="text-2xl font-bold text-center pb-3 text-atlantis-400">Upcoming Shows</h1>
-
-    <Bandcamp bandId="id_3369257" appId="68c90bc813857bfdf502d57a42766be2" />
-
-    <h1 class="text-2xl font-bold text-center py-3 text-atlantis-100">Past Shows</h1>
-
-    <Bandcamp bandId="id_3369257" appId="68c90bc813857bfdf502d57a42766be2" upcoming={false} calendarBgColor="bg-atlantis-100" />
+    <Panel tone="dark">
+        <div class="sec-label"><span class="label">Shows</span><span class="line"></span></div>
+        <h1>Catch Us Live</h1>
+        <div style="margin-top:1.25rem">
+            <Bandcamp bandId="id_3369257" appId="68c90bc813857bfdf502d57a42766be2" />
+        </div>
+    </Panel>
+    <Panel tone="dark2">
+        <div class="sec-label"><span class="label">Past Shows</span><span class="line"></span></div>
+        <h2>Where We've Been</h2>
+        <div style="margin-top:1.25rem">
+            <Bandcamp bandId="id_3369257" appId="68c90bc813857bfdf502d57a42766be2" upcoming={false} calendarBgColor="bg-atlantis-200" />
+        </div>
+    </Panel>
 </Layout>

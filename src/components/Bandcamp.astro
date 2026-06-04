@@ -1,5 +1,5 @@
 ---
-const {bandId, appId, upcoming = true, calendarBgColor = 'bg-lime-400'} = Astro.props;
+const {bandId, appId, upcoming = true, calendarBgColor = 'bg-road'} = Astro.props;
 const params = new URLSearchParams();
 params.append('app_id', appId);
 params.append('date', upcoming ? "upcoming" : "past");
@@ -96,8 +96,8 @@ const uniqueId = `shows-${upcoming ? 'upcoming' : 'past'}`;
 
     .show-item:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(150, 202, 79, 0.1);
-        border-color: rgba(150, 202, 79, 0.3);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35), 0 0 20px rgba(196, 32, 42, 0.12);
+        border-color: rgba(242, 193, 78, 0.4);
     }
 
     @keyframes pulse {

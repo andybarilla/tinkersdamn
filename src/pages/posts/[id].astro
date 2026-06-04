@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Panel from "../../components/Panel.astro";
 import Post from "../../components/Post.astro";
 import {getCollection} from "astro:content";
 
@@ -16,5 +17,7 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 ---
 <Layout>
-    <Post id={id} />
+    <Panel tone="dark">
+        <Post id={id} />
+    </Panel>
 </Layout>

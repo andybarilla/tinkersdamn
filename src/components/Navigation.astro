@@ -9,138 +9,95 @@ import Bluesky from './icons/Bluesky.astro';
 import Bandcamp from "./icons/Bandcamp.astro";
 ---
 
-<nav class="nav-bar bg-clairvoyant-950 w-full sticky top-0 z-50">
-    <div class="px-2 w-full">
+<nav class="nav-bar w-full sticky top-0 z-50">
+    <div class="px-3 w-full">
         <div class="flex items-center justify-between">
             <div class="hidden md:flex">
-                <!-- Navigation Links with Icons -->
-                <a href="/#navigation-start" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
-                    <Guitar class="w-5 h-5" />
-                    <span>Home</span>
-                </a>
-                <a href="/shows" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
-                    <Calendar class="w-5 h-5" />
-                    <span>Shows</span>
-                </a>
-                <a href="/music" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
-                    <MusicNote class="w-5 h-5" />
-                    <span>Music</span>
-                </a>
-                <a href="/videos" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
-                    <Video class="w-5 h-5" />
-                    <span>Videos</span>
-                </a>
-                <a href="/booking" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
-                    <Mail class="w-5 h-5" />
-                    <span>Booking</span>
-                </a>
-                <a href="/about" class="nav-link text-gray-50 hover:text-atlantis-400 py-2 px-3 rounded transition-all duration-200 flex items-center gap-2">
-                    <Info class="w-5 h-5" />
-                    <span>About</span>
-                </a>
+                <a href="/#navigation-start" class="nav-link"><Guitar class="w-5 h-5" /><span>Home</span></a>
+                <a href="/shows" class="nav-link"><Calendar class="w-5 h-5" /><span>Shows</span></a>
+                <a href="/music" class="nav-link"><MusicNote class="w-5 h-5" /><span>Music</span></a>
+                <a href="/videos" class="nav-link"><Video class="w-5 h-5" /><span>Videos</span></a>
+                <a href="/booking" class="nav-link"><Mail class="w-5 h-5" /><span>Booking</span></a>
+                <a href="/about" class="nav-link"><Info class="w-5 h-5" /><span>About</span></a>
             </div>
-            <div class="hidden md:flex w-full justify-end">
-                <!-- Social Links -->
-                <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" class="social-link text-gray-50 hover:text-[#61929C] py-2 px-2 rounded transition-colors duration-200 flex items-center">
-                    <Bandcamp class="w-5 h-5" />
-                </a>
-                <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" class="social-link text-gray-50 hover:text-[#1185fe] py-2 px-2 rounded transition-colors duration-200 flex items-center">
-                    <Bluesky class="w-5 h-5" />
-                </a>
+            <div class="hidden md:flex w-full justify-end items-center">
+                <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" class="social-link bandcamp" aria-label="Bandcamp"><Bandcamp class="w-5 h-5" /></a>
+                <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" class="social-link bluesky" aria-label="Bluesky"><Bluesky class="w-5 h-5" /></a>
             </div>
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button id="nav-toggle" class="text-gray-50 hover:text-atlantis-400 focus:outline-none transition-colors duration-200">
+                <button id="nav-toggle" class="text-bone focus:outline-none" aria-label="Toggle menu">
                     <svg class="h-6 w-6 mt-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <!-- Menu Icon -->
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M4 6h16M4 12h16M4 18h16" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
         </div>
     </div>
 </nav>
-<!-- Mobile Menu -->
 <div id="mobile-menu" class="mobile-menu hidden md:hidden w-full sticky top-[44px] z-40">
-    <a href="/" class="block text-gray-50 hover:text-atlantis-400 py-3 px-4 text-center transition-all duration-200 border-b border-clairvoyant-950/30">Home</a>
-    <a href="/shows" class="block text-gray-50 hover:text-atlantis-400 py-3 px-4 text-center transition-all duration-200 border-b border-clairvoyant-950/30">Shows</a>
-    <a href="/music" class="block text-gray-50 hover:text-atlantis-400 py-3 px-4 text-center transition-all duration-200 border-b border-clairvoyant-950/30">Music</a>
-    <a href="/videos" class="block text-gray-50 hover:text-atlantis-400 py-3 px-4 text-center transition-all duration-200 border-b border-clairvoyant-950/30">Videos</a>
-    <a href="/booking" class="block text-gray-50 hover:text-atlantis-400 py-3 px-4 text-center transition-all duration-200 border-b border-clairvoyant-950/30">Booking</a>
-    <a href="/about" class="block text-gray-50 hover:text-atlantis-400 py-3 px-4 text-center transition-all duration-200">About</a>
+    <a href="/" class="m-link">Home</a>
+    <a href="/shows" class="m-link">Shows</a>
+    <a href="/music" class="m-link">Music</a>
+    <a href="/videos" class="m-link">Videos</a>
+    <a href="/booking" class="m-link">Booking</a>
+    <a href="/about" class="m-link">About</a>
 </div>
 
 <style>
     .nav-bar {
-        backdrop-filter: blur(12px) saturate(180%);
-        background: rgba(81, 8, 86, 0.85);
-        box-shadow:
-            0 4px 6px rgba(0, 0, 0, 0.3),
-            0 1px 3px rgba(0, 0, 0, 0.2),
-            inset 0 -1px 0 rgba(150, 202, 79, 0.1);
-        border-bottom: 1px solid rgba(150, 202, 79, 0.1);
+        background: rgba(20, 17, 15, 0.92);
+        backdrop-filter: blur(8px) saturate(140%);
+        border-bottom: 2px solid var(--color-rust);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
-
     .nav-link {
-        position: relative;
-        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-condensed);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.92rem;
+        color: var(--color-bone-dim);
+        text-decoration: none;
+        padding: 0.55rem 0.85rem;
+        transition: color 0.18s ease, background 0.18s ease;
     }
+    .nav-link:hover { color: var(--color-char); background: var(--color-road); }
 
-    .nav-link:hover {
-        background: linear-gradient(135deg, rgba(227, 126, 244, 0.15) 0%, rgba(150, 202, 79, 0.15) 100%);
-        box-shadow:
-            0 2px 8px rgba(227, 126, 244, 0.3),
-            0 0 15px rgba(150, 202, 79, 0.2);
-        transform: scale(1.05);
-        color: #edaef9;
+    .social-link {
+        color: var(--color-bone-dim);
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        transition: color 0.18s ease;
     }
-
-    .nav-link::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        border-radius: 0.375rem;
-        background: linear-gradient(
-            45deg,
-            rgba(227, 126, 244, 0.3),
-            rgba(150, 202, 79, 0.3),
-            rgba(210, 77, 232, 0.3)
-        );
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: -1;
-        filter: blur(10px);
-    }
-
-    .nav-link:hover::before {
-        opacity: 1;
-    }
+    .social-link.bandcamp:hover { color: #61929C; }
+    .social-link.bluesky:hover { color: #1185fe; }
 
     .mobile-menu {
-        backdrop-filter: blur(12px) saturate(180%);
-        background: rgba(81, 8, 86, 0.9);
-        box-shadow:
-            0 8px 16px rgba(0, 0, 0, 0.4),
-            inset 0 1px 0 rgba(150, 202, 79, 0.1);
+        background: rgba(20, 17, 15, 0.96);
+        backdrop-filter: blur(8px);
+        border-bottom: 2px solid var(--color-rust);
     }
-
-    .mobile-menu a {
-        position: relative;
-        transition: all 0.3s ease;
+    .m-link {
+        display: block;
+        font-family: var(--font-condensed);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-bone);
+        text-decoration: none;
+        text-align: center;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid rgba(196, 32, 42, 0.2);
+        transition: background 0.18s ease, color 0.18s ease;
     }
-
-    .mobile-menu a:hover {
-        background: rgba(150, 202, 79, 0.15);
-        transform: translateX(8px);
-        box-shadow: inset 4px 0 0 rgba(150, 202, 79, 0.6);
-    }
+    .m-link:hover { background: var(--color-road); color: var(--color-char); }
 </style>
 <script>
     const navToggle = document.getElementById('nav-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-
-    navToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
+    navToggle?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
 </script>

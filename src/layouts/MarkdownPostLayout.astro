@@ -1,10 +1,12 @@
 ---
 import Layout from "./Layout.astro";
+import Panel from "../components/Panel.astro";
 const { frontmatter } = Astro.props;
 ---
-<Layout>
-    <p class="text-2xl font-bold text-atlantis-400 text-center">{frontmatter.title}</p>
-    <p class="text-sm text-gray-400 text-center">{new Date(frontmatter.pubDate).toLocaleDateString()}</p>
+<Layout title={frontmatter.title}>
+    <Panel tone="dark">
+    <h1 class="text-center text-bone">{frontmatter.title}</h1>
+    <p class="text-sm font-mono uppercase tracking-widest text-amber text-center mb-6">{new Date(frontmatter.pubDate).toLocaleDateString()}</p>
 
     <slot />
 
@@ -15,5 +17,5 @@ const { frontmatter } = Astro.props;
     <!--            <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>-->
     <!--    ))}-->
     <!--</div>-->
-
+    </Panel>
 </Layout>

@@ -1,0 +1,15 @@
+---
+// Full-bleed section with the desert "poster panel" treatment.
+// tone: "dark" (default) | "dark2" | "paper"
+// divider: add a torn-paper edge at the top ("down" tears into a paper panel below,
+//          "up" tears back up out of one). Omit for no divider.
+const { tone = "dark", divider } = Astro.props;
+const cls = tone === "paper" ? "panel panel-paper" : tone === "dark2" ? "panel panel-dark" : "panel";
+---
+{divider === "down" && <div class="torn"></div>}
+{divider === "up" && <div class="torn-up"></div>}
+<section class={cls}>
+    <div class="wrap">
+        <slot/>
+    </div>
+</section>

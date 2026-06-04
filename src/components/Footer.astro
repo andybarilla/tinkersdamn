@@ -1,0 +1,81 @@
+---
+import Bandcamp from "./icons/Bandcamp.astro";
+import Bluesky from "./icons/Bluesky.astro";
+import Mail from "./icons/Mail.astro";
+---
+<footer class="site-footer">
+    <div class="foot-in">
+        <div class="foot-brand-col">
+            <div class="foot-brand">TINKER'S <span>DAMN</span></div>
+            <p class="foot-sub">Grunge · Stoner · Psych — Colorado Springs</p>
+            <a class="foot-mail" href="mailto:band@tinkersdamnband.com">
+                <Mail class="w-4 h-4"/> band@tinkersdamnband.com
+            </a>
+            <div class="foot-socials">
+                <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><Bandcamp class="w-5 h-5"/></a>
+                <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"><Bluesky class="w-5 h-5"/></a>
+            </div>
+        </div>
+
+        <div class="foot-list">
+            <span class="label">Get on the list</span>
+            <iframe
+                class="foot-frame"
+                src="https://bandsintown.com/artist/3369257/email_signup_form?headerTextColor=rgba(236,228,211,1)&backgroundColor=rgba(20,17,15,1)&ctaBackgroundColor=rgba(196,32,42,1)&title=Mailing List&headerTextStyle=normal&headerText=New shows and records, straight to your inbox&font=Oswald&ctaIcon=hide&ctaBorderRadius=2px&ctaBorderWidth=2px&ctaBorderColor=rgba(196,32,42,1)&ctaFontColor=rgba(236,228,211,1)&alignment=center&emailInputField=hide&ctaLabel=Subscribe&layout=narrow&locale=en"
+                width="100%" height="240px" title="Mailing list signup"></iframe>
+        </div>
+    </div>
+    <div class="foot-base">© {new Date().getFullYear()} Tinker's Damn</div>
+</footer>
+
+<style>
+    .site-footer {
+        background: var(--color-char-2);
+        border-top: 3px solid var(--color-rust);
+        padding: 2.5rem 0 1.25rem;
+    }
+    .foot-in {
+        max-width: 70rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+    }
+    .foot-brand { font-family: var(--font-display); font-size: 1.7rem; color: var(--color-bone); letter-spacing: 0.02em; }
+    .foot-brand span { color: var(--color-spark); }
+    .foot-sub {
+        font-family: var(--font-condensed);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.82rem;
+        color: var(--color-amber);
+        margin: 0.35rem 0 0.9rem;
+    }
+    .foot-mail {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--color-bone-dim);
+    }
+    .foot-mail:hover { color: var(--color-road); }
+    .foot-socials { display: flex; gap: 0.75rem; margin-top: 1rem; }
+    .foot-socials a { color: var(--color-bone-dim); transition: color 0.18s ease; }
+    .foot-socials a:hover { color: var(--color-amber); }
+    .foot-list { flex: 1; min-width: 260px; max-width: 340px; }
+    .foot-frame { border: 2px solid rgba(196, 32, 42, 0.35); margin-top: 0.6rem; display: block; }
+    .foot-base {
+        max-width: 70rem;
+        margin: 2rem auto 0;
+        padding: 1rem 1.5rem 0;
+        border-top: 1px solid rgba(236, 228, 211, 0.1);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-bone-dim);
+    }
+</style>

@@ -6,380 +6,164 @@ import { Image } from 'astro:assets';
 ---
 
 <section class="hero-section relative overflow-hidden">
-  <!-- Background Image with Parallax -->
   <div class="hero-image-container absolute inset-0">
-    <!-- Desktop Image -->
-    <Image
-      src={bandPhoto}
-      alt="Tinker's Damn band photo"
-      class="hero-image hero-image-desktop w-full h-full object-cover"
-      loading="eager"
-      quality={90}
-    />
-    <!-- Mobile Image -->
-    <Image
-      src={bandPhotoMobile}
-      alt="Tinker's Damn band photo"
-      class="hero-image hero-image-mobile w-full h-full object-cover"
-      loading="eager"
-      quality={90}
-    />
-    <!-- Gradient Overlays -->
+    <Image src={bandPhoto} alt="Tinker's Damn band photo" class="hero-image hero-image-desktop w-full h-full object-cover" loading="eager" quality={90}/>
+    <Image src={bandPhotoMobile} alt="Tinker's Damn band photo" class="hero-image hero-image-mobile w-full h-full object-cover" loading="eager" quality={90}/>
     <div class="hero-gradient-1"></div>
     <div class="hero-gradient-2"></div>
+    <div class="hero-halftone"></div>
   </div>
 
-  <!-- Content -->
   <div class="hero-content relative z-10 flex flex-col items-center justify-center min-h-[100vh] px-4 text-center">
-    <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white">
+    <span class="hero-eyebrow">Out Now — From the Depths of Earl Drive</span>
+    <h1 class="hero-title">
       <Image src={logo} alt="Tinker's Damn Logo" class="hero-logo" id="heroLogo" />
     </h1>
-    <p class="hero-subtitle text-xl md:text-2xl lg:text-3xl mb-8 text-gray-100 max-w-3xl">
-      Grunge & Stoner Rock from Colorado Springs
-    </p>
+    <p class="hero-subtitle">Grunge &middot; Stoner &middot; Psych — Colorado Springs</p>
     <div class="hero-cta-buttons flex flex-wrap gap-4 justify-center">
-      <a href="/shows" class="hero-button hero-button-primary">
-        See Shows
-      </a>
-      <a href="/music" class="hero-button hero-button-secondary">
-        Listen Now
-      </a>
+      <a href="/shows" class="btn btn-primary">See Shows</a>
+      <a href="/music" class="btn btn-ghost">Listen Now</a>
     </div>
   </div>
 
-  <!-- Scroll Indicator -->
   <a href="#navigation-start" class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 cursor-pointer" aria-label="Scroll to navigation">
     <div class="scroll-arrow"></div>
   </a>
 </section>
 
 <style>
-  .hero-section {
-    position: relative;
-    min-height: 100vh;
-  }
+  .hero-section { position: relative; min-height: 100vh; }
+  .hero-image-container { z-index: 0; }
+  .hero-image { animation: subtle-zoom 20s ease-in-out infinite alternate; transform-origin: center center; }
 
-  .hero-image-container {
-    z-index: 0;
-  }
-
-  .hero-image {
-    animation: subtle-zoom 20s ease-in-out infinite alternate;
-    transform-origin: center center;
-  }
-
-  /* Show mobile image on small screens, desktop on larger screens */
-  .hero-image-mobile {
-    display: block;
-  }
-
-  .hero-image-desktop {
-    display: none;
-  }
-
+  .hero-image-mobile { display: block; }
+  .hero-image-desktop { display: none; }
   @media (min-width: 769px) {
-    .hero-image-mobile {
-      display: none;
-    }
-
-    .hero-image-desktop {
-      display: block;
-    }
+    .hero-image-mobile { display: none; }
+    .hero-image-desktop { display: block; }
   }
 
-  /* Gradient overlays for depth and readability */
+  /* warm screenprint overlays */
   .hero-gradient-1 {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(81, 8, 86, 0.7) 0%,     /* clairvoyant-950 */
-      rgba(81, 8, 86, 0.4) 40%,
-      rgba(3, 3, 3, 0.6) 100%      /* neutral-950 */
-    );
-    z-index: 1;
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom,
+      rgba(20, 17, 15, 0.55) 0%,
+      rgba(20, 17, 15, 0.35) 40%,
+      rgba(20, 17, 15, 0.85) 100%);
   }
-
   .hero-gradient-2 {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse at center,
-      transparent 0%,
-      rgba(3, 3, 3, 0.4) 70%
-    );
-    z-index: 2;
+    position: absolute; inset: 0; z-index: 2;
+    background:
+      radial-gradient(ellipse at 75% 25%, rgba(196, 32, 42, 0.30), transparent 55%),
+      radial-gradient(ellipse at 12% 85%, rgba(224, 163, 46, 0.22), transparent 55%);
+  }
+  .hero-halftone {
+    position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0.35;
+    background-image: radial-gradient(rgba(20, 17, 15, 0.6) 1px, transparent 1.6px);
+    background-size: 6px 6px;
+    -webkit-mask-image: linear-gradient(to top, #000, transparent 45%);
+    mask-image: linear-gradient(to top, #000, transparent 45%);
   }
 
-  /* Title animation */
-  .hero-title {
-    animation: fade-in-up 1s ease-out 0.2s both;
-    text-shadow:
-      0 0 20px rgba(150, 202, 79, 0.3),
-      0 0 40px rgba(150, 202, 79, 0.2),
-      0 4px 8px rgba(0, 0, 0, 0.8);
-    letter-spacing: 0.02em;
+  .hero-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.8rem;
+    color: #ece4d3;
+    background: #c4202a;
+    padding: 5px 14px;
+    transform: rotate(-1.5deg);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.6);
+    margin-bottom: 1.5rem;
+    animation: fade-in-up 1s ease-out 0.1s both;
   }
 
-  /* Responsive logo sizing with enhanced animations */
+  .hero-title { animation: fade-in-up 1s ease-out 0.2s both; margin-bottom: 1rem; }
+
   .hero-logo {
-    width: 200px;
-    height: auto;
-    animation: logo-entrance 1.5s ease-out 0.2s both, logo-pulse 4s ease-in-out 2s infinite;
-    filter: drop-shadow(0 0 30px rgba(150, 202, 79, 0.4)) drop-shadow(0 0 60px rgba(227, 126, 244, 0.3));
-    transition: all 0.4s ease;
+    width: 200px; height: auto;
+    animation: logo-entrance 1.4s ease-out 0.2s both;
+    filter: drop-shadow(0 0 30px rgba(224, 163, 46, 0.35)) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.7));
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
   }
-
   .hero-logo:hover {
-    animation: logo-entrance 1.5s ease-out 0.2s both, logo-pulse 4s ease-in-out 2s infinite, logo-rock 0.5s ease-in-out;
-    filter: drop-shadow(0 0 40px rgba(150, 202, 79, 0.6)) drop-shadow(0 0 80px rgba(227, 126, 244, 0.5));
-    transform: scale(1.05);
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 40px rgba(196, 32, 42, 0.5)) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.7));
   }
+  @media (min-width: 640px) { .hero-logo { width: 280px; } }
+  @media (min-width: 768px) { .hero-logo { width: 360px; } }
+  @media (min-width: 1024px) { .hero-logo { width: 440px; } }
+  @media (min-width: 1280px) { .hero-logo { width: 500px; } }
 
-  @media (min-width: 640px) {
-    .hero-logo {
-      width: 280px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .hero-logo {
-      width: 350px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .hero-logo {
-      width: 450px;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .hero-logo {
-      width: 500px;
-    }
-  }
-
-  @media (min-width: 1536px) {
-    .hero-logo {
-      width: 550px;
-    }
-  }
-
-  /* Subtitle animation */
   .hero-subtitle {
     animation: fade-in-up 1s ease-out 0.4s both;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    font-weight: 300;
-    letter-spacing: 0.01em;
-  }
-
-  /* Button container animation */
-  .hero-cta-buttons {
-    animation: fade-in-up 1s ease-out 0.6s both;
-  }
-
-  /* Button styles */
-  .hero-button {
-    padding: 0.875rem 2rem;
-    font-size: 1.125rem;
+    font-family: 'Oswald', sans-serif;
     font-weight: 600;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #e0a32e;
+    font-size: clamp(0.95rem, 2vw, 1.25rem);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2rem;
   }
 
-  .hero-button-primary {
-    background: linear-gradient(135deg, #96ca4f 0%, #78b032 100%);
-    color: #030303;
-    border: 2px solid transparent;
-  }
+  .hero-cta-buttons { animation: fade-in-up 1s ease-out 0.6s both; }
 
-  .hero-button-primary:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 6px 12px rgba(0, 0, 0, 0.4),
-      0 0 25px rgba(150, 202, 79, 0.5),
-      0 0 35px rgba(227, 126, 244, 0.3);
-    background: linear-gradient(135deg, #a8d66f 0%, #8ac042 100%);
-  }
-
-  .hero-button-secondary {
-    background: linear-gradient(135deg, rgba(227, 126, 244, 0.1) 0%, transparent 100%);
-    color: #e37ef4;
-    border: 2px solid #e37ef4;
-  }
-
-  .hero-button-secondary:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, rgba(227, 126, 244, 0.2) 0%, rgba(150, 202, 79, 0.1) 100%);
-    box-shadow:
-      0 6px 12px rgba(0, 0, 0, 0.4),
-      0 0 25px rgba(227, 126, 244, 0.4),
-      0 0 35px rgba(150, 202, 79, 0.2);
-    border-color: #edaef9;
-    color: #edaef9;
-  }
-
-  /* Scroll indicator */
-  .scroll-indicator {
-    animation: fade-in 1s ease-out 1s both, bounce 2s ease-in-out 2s infinite;
-    filter: drop-shadow(0 0 8px rgba(227, 126, 244, 0.4));
-  }
-
+  .scroll-indicator { animation: fade-in 1s ease-out 1s both, bounce 2s ease-in-out 2s infinite; }
   .scroll-arrow {
-    width: 24px;
-    height: 24px;
-    border-left: 3px solid #e37ef4;
-    border-bottom: 3px solid #e37ef4;
+    width: 22px; height: 22px;
+    border-left: 3px solid #f2c14e;
+    border-bottom: 3px solid #f2c14e;
     transform: rotate(-45deg);
-    opacity: 0.8;
-    transition: all 0.3s ease;
+    opacity: 0.85;
   }
+  .scroll-indicator:hover .scroll-arrow { border-color: #e0a32e; opacity: 1; }
 
-  .scroll-indicator:hover .scroll-arrow {
-    border-left-color: #edaef9;
-    border-bottom-color: #edaef9;
-    opacity: 1;
-  }
-
-  /* Keyframe animations */
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes subtle-zoom {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.05);
-    }
-  }
-
+  @keyframes fade-in-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes subtle-zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
   @keyframes logo-entrance {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) rotate(-5deg);
-      filter: blur(10px);
-    }
-    50% {
-      transform: scale(1.1) rotate(2deg);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) rotate(0deg);
-      filter: blur(0px);
-    }
+    0% { opacity: 0; transform: scale(0.85) rotate(-4deg); filter: blur(8px); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
   }
 
-  @keyframes logo-pulse {
-    0%, 100% {
-      filter: drop-shadow(0 0 30px rgba(150, 202, 79, 0.4)) drop-shadow(0 0 60px rgba(227, 126, 244, 0.3));
-    }
-    50% {
-      filter: drop-shadow(0 0 40px rgba(150, 202, 79, 0.6)) drop-shadow(0 0 80px rgba(227, 126, 244, 0.5));
-    }
-  }
-
-  @keyframes logo-rock {
-    0%, 100% {
-      transform: rotate(0deg);
-    }
-    25% {
-      transform: rotate(-3deg);
-    }
-    75% {
-      transform: rotate(3deg);
-    }
-  }
-
-  /* Parallax effect with JavaScript */
-  .hero-parallax {
-    will-change: transform;
+  @media (prefers-reduced-motion: reduce) {
+    .hero-image, .hero-title, .hero-eyebrow, .hero-subtitle, .hero-cta-buttons, .scroll-indicator, .hero-logo { animation: none !important; }
   }
 </style>
 
 <script>
-  // Parallax scroll effect
   const heroImage = document.querySelector('.hero-image') as HTMLElement;
   const heroContent = document.querySelector('.hero-content') as HTMLElement;
-
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ticking = false;
 
   function updateParallax() {
     const scrolled = window.scrollY;
-    const parallaxSpeed = 0.5;
-
-    if (heroImage) {
-      heroImage.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.05)`;
-    }
-
-    if (heroContent) {
-      heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
-
+    if (heroImage) heroImage.style.transform = `translateY(${scrolled * 0.5}px) scale(1.05)`;
+    if (heroContent) heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
     ticking = false;
   }
-
   function requestParallaxUpdate() {
-    if (!ticking) {
-      window.requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
+    if (!ticking && !reduce) { window.requestAnimationFrame(updateParallax); ticking = true; }
+  }
+  if (!reduce) {
+    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    updateParallax();
   }
 
-  window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
-
-  // Initial update
-  updateParallax();
-
-  // Smooth scroll for the arrow indicator
   const scrollIndicator = document.querySelector('.scroll-indicator');
-  if (scrollIndicator) {
-    scrollIndicator.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector('#navigation-start');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  }
+  scrollIndicator?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('#navigation-start')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
-  // Logo hover triggers PromoHero
   const heroLogo = document.getElementById('heroLogo');
-  if (heroLogo) {
-    heroLogo.addEventListener('click', () => {
-      // Trigger the promo hero show event
-      const event = new CustomEvent('showPromoHero');
-      window.dispatchEvent(event);
-    });
-  }
+  heroLogo?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('showPromoHero'));
+  });
 </script>

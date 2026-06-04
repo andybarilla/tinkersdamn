@@ -17,23 +17,23 @@ const { showLogo = true } = Astro.props;
     .header-container {
         background: linear-gradient(
             180deg,
-            rgba(81, 8, 86, 0.4) 0%,
-            rgba(3, 3, 3, 0.98) 100%
+            rgba(58, 16, 17, 0.6) 0%,
+            rgba(20, 17, 15, 0.98) 100%
         );
         padding: 1rem 0;
-        border-bottom: 1px solid rgba(227, 126, 244, 0.1);
-        box-shadow: 0 4px 20px rgba(81, 8, 86, 0.2);
+        border-bottom: 1px solid rgba(196, 32, 42, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         transition: all 0.5s ease;
     }
 
     .header-container.scrolled {
         background: linear-gradient(
             180deg,
-            rgba(25, 40, 11, 0.5) 0%,
-            rgba(3, 3, 3, 0.98) 100%
+            rgba(58, 16, 17, 0.4) 0%,
+            rgba(20, 17, 15, 0.98) 100%
         );
-        border-bottom: 1px solid rgba(150, 202, 79, 0.15);
-        box-shadow: 0 4px 20px rgba(120, 176, 50, 0.2);
+        border-bottom: 1px solid rgba(224, 163, 46, 0.25);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     .logo-link {
@@ -44,8 +44,8 @@ const { showLogo = true } = Astro.props;
     .logo-link:hover {
         filter:
             drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6))
-            drop-shadow(0 0 25px rgba(227, 126, 244, 0.4))
-            drop-shadow(0 0 35px rgba(150, 202, 79, 0.2));
+            drop-shadow(0 0 25px rgba(196, 32, 42, 0.4))
+            drop-shadow(0 0 35px rgba(224, 163, 46, 0.25));
         transform: scale(1.02);
     }
 </style>

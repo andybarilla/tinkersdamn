@@ -1,26 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Panel from '../components/Panel.astro';
 import {Image} from 'astro:assets';
 import image from '../assets/bandphoto2022adjusted2.jpg';
-import {YouTube} from 'astro-embed';
 ---
 <Layout title="About" description="Tinker's Damn — grunge, stoner, and psych rock from Colorado Springs. Courtney, Shawn, Andy, and Rob.">
-    <h1 class="text-2xl font-bold text-center pb-3 text-atlantis-400">Who's Tinker's Damn?</h1>
-
-    <h2 class="text-xl text-center">Grungy grooves on the rocks with a psychedelic twist</h2>
-
-    <div class="py-5">
-        <span class="font-bold text-atlantis-400">Tinker's Damn</span> has been rocking Colorado Springs since 2014.
-        During the pandemic downtime, what started out as a cover band has now evolved into a group
-        producing original music described as a cross between Clutch and The Pretty Reckless.
-    </div>
-
-    <div class="pb-5">
-        <span class="font-bold text-atlantis-400">Tinker's Damn</span> is fronted by <span class="font-bold text-atlantis-400">Courtney's</span>
-        killer and versatile vocal stylings, with <span class="font-bold text-atlantis-400">Shawn</span> ripping out the guitar
-        solos. The rhythm section grooves with the bass stylings of <span class="font-bold text-atlantis-400">Andy</span>
-        with <span class="font-bold text-atlantis-400">Rob</span> holding down the backbeat on drums.
-    </div>
-
-    <Image src={image} alt="Band photo of the members of Tinker's Damn in a brewroom"/>
+    <Panel tone="paper">
+        <div class="sec-label"><span class="label">Who's Tinker's Damn</span><span class="line"></span></div>
+        <h1 class="misreg">Grungy Grooves On The Rocks</h1>
+        <div class="bio-grid">
+            <div class="bio">
+                <p><strong>Tinker's Damn</strong> has been rocking Colorado Springs since 2014. During the pandemic downtime, what started out as a cover band evolved into a group producing original music — a cross between Clutch and The Pretty Reckless.</p>
+                <p>Fronted by <strong>Courtney's</strong> killer and versatile vocals, with <strong>Shawn</strong> ripping out the guitar solos. The rhythm section grooves on the bass of <strong>Andy</strong> while <strong>Rob</strong> holds down the backbeat on drums.</p>
+                <p>Our debut album <em>From the Depths of Earl Drive</em> is out now.</p>
+            </div>
+            <div class="bio-photo">
+                <Image src={image} alt="Band photo of the members of Tinker's Damn in a brewroom"/>
+            </div>
+        </div>
+    </Panel>
 </Layout>
+
+<style>
+    .bio-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.25rem; align-items: center; margin-top: 1rem; }
+    .bio p { margin-bottom: 0.9rem; max-width: 52ch; }
+    .bio-photo { justify-self: center; transform: rotate(-1.5deg); }
+    .bio-photo :global(img) { border: 8px solid #fff; box-shadow: 8px 10px 0 rgba(20, 17, 15, 0.22); display: block; }
+    @media (max-width: 820px) { .bio-grid { grid-template-columns: 1fr; } .bio-photo { margin-top: 1.25rem; justify-self: start; } }
+</style>

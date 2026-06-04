@@ -1,31 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Panel from "../components/Panel.astro";
 import {YouTube} from 'astro-embed';
 const videos = [
-    {
-        title: "Tinker's Damn: Journey Thru the Underworld [Lyric Video]",
-        url: "https://www.youtube.com/watch?v=4BxkHsNscdA",
-    },
-    {
-        title: "Tinker's Damn: Safe (The Scrote Song) [Live]",
-        url: "https://www.youtube.com/watch?v=uLJ_V1NMJbM"
-    },
-    {
-        title: "Tinker's Damn: Paris [Live]",
-        url: "https://www.youtube.com/watch?v=1_YKfSnCRE0"
-    },
-    {
-        title: "Tinker's Damn: Piece of My Heart [Live]",
-        url: "https://www.youtube.com/watch?v=vcMC6QblM2g"
-    }
+    { title: "Tinker's Damn: Journey Thru the Underworld [Lyric Video]", url: "https://www.youtube.com/watch?v=4BxkHsNscdA" },
+    { title: "Tinker's Damn: Safe (The Scrote Song) [Live]", url: "https://www.youtube.com/watch?v=uLJ_V1NMJbM" },
+    { title: "Tinker's Damn: Paris [Live]", url: "https://www.youtube.com/watch?v=1_YKfSnCRE0" },
+    { title: "Tinker's Damn: Piece of My Heart [Live]", url: "https://www.youtube.com/watch?v=vcMC6QblM2g" }
 ];
 ---
 <Layout title="Videos" description="Live clips and lyric videos from Tinker's Damn.">
-    <h1 class="text-2xl font-bold text-center pb-3 text-atlantis-400">Videos</h1>
-
-    {videos.map(video => (
-        <YouTube id={video.url}
-                 title={video.title}
-                 class="mx-auto my-5"/>
-    ))}
+    <Panel tone="dark">
+        <div class="sec-label"><span class="label">Watch</span><span class="line"></span></div>
+        <h1>Videos</h1>
+        <div class="vid-grid">
+            {videos.map(video => (
+                <YouTube id={video.url} title={video.title} />
+            ))}
+        </div>
+    </Panel>
 </Layout>
+
+<style>
+    .vid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+</style>
