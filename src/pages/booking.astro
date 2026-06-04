@@ -1,16 +1,81 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {Image} from 'astro:assets';
-import image from '../assets/bandphoto2022adjusted2.jpg';
-import {YouTube} from 'astro-embed';
+import { Image } from 'astro:assets';
+import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
+import { YouTube } from 'astro-embed';
 ---
-<Layout>
-    <h1 class="text-2xl font-bold text-center pb-3 text-atlantis-400">Booking</h1>
+<Layout
+    title="Booking & Press"
+    description="Book Tinker's Damn — original grunge/stoner/psych rock from Colorado Springs. Bio, music, live video, press photo, and tech info.">
 
-    <div>
-        We can tweak our setlist and equipment, from full PA setup to trimmed down amp-less and e-drums, to fit your establishment. For more information about booking
-        <span class="font-bold text-atlantis-400">Tinker's Damn</span> email us at
-        <a class="text-atlantis-400"
-           href="mailto:band@tinkersdamnband.com">band@tinkersdamnband.com</a>
+    <h1 class="text-2xl font-bold text-center pb-3 text-atlantis-400">Booking &amp; Press</h1>
+
+    <p class="text-center text-lg pb-6 max-w-2xl mx-auto">
+        Original grunge / stoner / psych rock from Colorado Springs — a cross between
+        Clutch and The Pretty Reckless. Booking shows across the Front Range.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4 pb-10">
+        <a class="inline-block px-6 py-3 rounded-lg font-semibold bg-atlantis-400 text-neutral-950 hover:bg-atlantis-300 transition-colors"
+           href="mailto:band@tinkersdamnband.com">Book us</a>
+        <a class="inline-block px-6 py-3 rounded-lg font-semibold border-2 border-clairvoyant-400 text-clairvoyant-300 hover:bg-clairvoyant-400/10 transition-colors"
+           href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer">Listen</a>
     </div>
+
+    <h3 class="text-xl font-bold text-atlantis-400 pb-2">The band</h3>
+    <p class="pb-6">
+        Courtney (vocals, keys), Shawn (guitar), Andy (bass), and Rob (drums) have been
+        rocking Colorado Springs since 2014 — a cover band that turned all-original in 2023.
+        Our debut album <em>From the Depths of Earl Drive</em> is out now. Live, we play a
+        45-minute original set: full electric, multi-vocal, loud.
+    </p>
+
+    <h3 class="text-xl font-bold text-atlantis-400 pb-2">Listen</h3>
+    <iframe
+        class="w-full max-w-md mx-auto mb-8 block"
+        style="border: 0; height: 638px;"
+        src="https://bandcamp.com/EmbeddedPlayer/album=3699694381/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/tracklist=true/tracks=2831569808,2732741698,1869581835,2126876200/esig=66edf736dfa944252a71f7c8ac792166/"
+        seamless title="From the Depths of Earl Drive">
+        <a href="https://tinkersdamn.bandcamp.com/album/from-the-depths-of-earl-drive">From the Depths of Earl Drive by Tinker's Damn</a>
+    </iframe>
+
+    <h3 class="text-xl font-bold text-atlantis-400 pb-2">Watch — live</h3>
+    <YouTube id="https://www.youtube.com/watch?v=uLJ_V1NMJbM"
+             title="Tinker's Damn: Safe (The Scrote Song) [Live]"
+             class="mx-auto mb-8"/>
+
+    <h3 class="text-xl font-bold text-atlantis-400 pb-2">Press photo</h3>
+    <Image src={bandPhoto} alt="Tinker's Damn band photo" class="rounded-lg mb-3"/>
+    <p class="pb-8">
+        <a href={bandPhoto.src} download="tinkers-damn.jpg">Download press photo</a>
+    </p>
+
+    <h3 class="text-xl font-bold text-atlantis-400 pb-2">Tech</h3>
+    <p class="pb-2">Four-piece, full electric. Input list:</p>
+    <ol class="list-decimal list-inside pb-3 space-y-1">
+        <li>Kick — mic</li>
+        <li>Bass — DI</li>
+        <li>Guitar — mic'd cab</li>
+        <li>Keys — DI <span class="text-clairvoyant-300">(requires +48V phantom power)</span></li>
+        <li>Vocals — Courtney (lead)</li>
+        <li>Vocals — Andy</li>
+        <li>Vocals — Rob</li>
+    </ol>
+    <p class="pb-8">
+        Courtney runs in-ears; three wedge mixes for the rest. We bring our own backline.
+        Full stage plot available on request.
+    </p>
+
+    <h3 class="text-xl font-bold text-atlantis-400 pb-2">Contact</h3>
+    <p class="pb-1">
+        Booking:
+        <a href="mailto:band@tinkersdamnband.com">band@tinkersdamnband.com</a>
+    </p>
+    <p>
+        <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer">Bandcamp</a>
+        &middot;
+        <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        &middot;
+        <a href="/videos">More video</a>
+    </p>
 </Layout>
