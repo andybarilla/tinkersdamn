@@ -1,6 +1,9 @@
 ---
 import Bandcamp from "./icons/Bandcamp.astro";
 import Bluesky from "./icons/Bluesky.astro";
+import Instagram from "./icons/Instagram.astro";
+import Facebook from "./icons/Facebook.astro";
+import YouTube from "./icons/YouTube.astro";
 import Mail from "./icons/Mail.astro";
 ---
 <footer class="site-footer">
@@ -12,8 +15,11 @@ import Mail from "./icons/Mail.astro";
                 <Mail class="w-4 h-4"/> band@tinkersdamnband.com
             </a>
             <div class="foot-socials">
-                <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><Bandcamp class="w-5 h-5"/></a>
-                <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"><Bluesky class="w-5 h-5"/></a>
+                <a class="s-bandcamp" href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><Bandcamp class="w-5 h-5"/></a>
+                <a class="s-bluesky" href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"><Bluesky class="w-5 h-5"/></a>
+                <a class="s-instagram" href="https://www.instagram.com/tinkersdamnband" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram class="w-5 h-5"/></a>
+                <a class="s-facebook" href="https://www.facebook.com/tinkersdamnband" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook class="w-5 h-5"/></a>
+                <a class="s-youtube" href="https://www.youtube.com/@tinkersdamn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YouTube class="w-5 h-5"/></a>
             </div>
         </div>
 
@@ -62,9 +68,14 @@ import Mail from "./icons/Mail.astro";
         color: var(--color-bone-dim);
     }
     .foot-mail:hover { color: var(--color-road); }
-    .foot-socials { display: flex; gap: 0.75rem; margin-top: 1rem; }
-    .foot-socials a { color: var(--color-bone-dim); transition: color 0.18s ease; }
-    .foot-socials a:hover { color: var(--color-amber); }
+    .foot-socials { display: flex; gap: 0.85rem; margin-top: 1rem; align-items: center; }
+    .foot-socials a { color: var(--color-bone-dim); transition: color 0.18s ease, transform 0.18s ease; }
+    .foot-socials a:hover { transform: translateY(-2px); }
+    .foot-socials .s-bandcamp:hover { color: #61929C; }
+    .foot-socials .s-bluesky:hover { color: #1185fe; }
+    .foot-socials .s-instagram:hover { color: #e1306c; }
+    .foot-socials .s-facebook:hover { color: #1877f2; }
+    .foot-socials .s-youtube:hover { color: #ff0000; }
     .foot-list { flex: 1; min-width: 260px; max-width: 340px; }
     .foot-frame { border: 2px solid rgba(196, 32, 42, 0.35); margin-top: 0.6rem; display: block; }
     .foot-base {
