@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <radialGradient id="bg"><stop offset="0" stop-color="#2a211b"/><stop offset="1" stop-color="#100d0b"/></radialGradient>
+    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2" fill="#d93677" opacity="0.14"/></pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect width="1080" height="1080" fill="url(#dots)"/>
+  <circle cx="540" cy="540" r="486" fill="none" stroke="#f4d83f" stroke-width="24"/>
+  <circle cx="540" cy="540" r="452" fill="none" stroke="#d93677" stroke-width="10"/>
+  <image href="../../src/assets/tinkers-damn-logo.png" x="145" y="310" width="790" height="455"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="624" viewBox="0 0 1640 624">
+  <defs><linearGradient id="shade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#100d0b" stop-opacity="0.98"/><stop offset="0.68" stop-color="#100d0b" stop-opacity="0.80"/><stop offset="1" stop-color="#100d0b" stop-opacity="0.28"/></linearGradient><clipPath id="portrait"><rect x="1240" y="24" width="350" height="576"/></clipPath></defs>
+  <rect width="1640" height="624" fill="#17120f"/>
+  <image href="../../src/assets/covers-band-brewery.jpg" x="0" y="-303" width="1640" height="1230" preserveAspectRatio="none" opacity="0.48"/>
+  <rect width="1640" height="624" fill="url(#shade)"/>
+  <rect x="0" y="0" width="1640" height="12" fill="#f4d83f"/><rect x="0" y="612" width="1640" height="12" fill="#d93677"/>
+  <image href="../../src/assets/tinkers-damn-logo.png" x="360" y="60" width="300" height="173"/>
+  <rect x="360" y="266" width="850" height="54" fill="#f4d83f" transform="rotate(-1 360 266)"/>
+  <text x="380" y="301" fill="#211813" font-family="Adwaita Mono, monospace" font-size="21" font-weight="700" letter-spacing="3">THE SONGS YOU WORE OUT BEFORE STREAMING EXISTED.</text>
+  <text x="360" y="385" fill="#fff5df" font-family="Adwaita Sans, sans-serif" font-size="35" font-weight="800">Alternative rock covers in Colorado Springs</text>
+  <text x="360" y="437" fill="#b8ad97" font-family="Adwaita Sans, sans-serif" font-size="27">Original grunge, stoner, and psych across the Front Range</text>
+  <text x="360" y="520" fill="#f4d83f" font-family="Adwaita Mono, monospace" font-size="21" font-weight="700" letter-spacing="3">TINKERSDAMNBAND.COM</text>
+  <rect x="1252" y="36" width="350" height="576" fill="#d93677"/><rect x="1240" y="24" width="350" height="576" fill="#f4d83f"/>
+  <g clip-path="url(#portrait)"><image href="../social/courtney-live.jpg" x="1240" y="24" width="350" height="576" preserveAspectRatio="xMidYMid slice"/></g>
+</svg>
