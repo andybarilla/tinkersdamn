@@ -1,92 +1,48 @@
 ---
-import Bandcamp from "./icons/Bandcamp.astro";
-import Bluesky from "./icons/Bluesky.astro";
-import Instagram from "./icons/Instagram.astro";
-import Facebook from "./icons/Facebook.astro";
-import YouTube from "./icons/YouTube.astro";
-import Mail from "./icons/Mail.astro";
+import Bandcamp from './icons/Bandcamp.astro';
+import Bluesky from './icons/Bluesky.astro';
+import Instagram from './icons/Instagram.astro';
+import Facebook from './icons/Facebook.astro';
+import YouTube from './icons/YouTube.astro';
 ---
 <footer class="site-footer">
-    <div class="foot-in">
-        <div class="foot-brand-col">
-            <div class="foot-brand">TINKER'S <span>DAMN</span></div>
-            <p class="foot-sub">Grunge · Stoner · Psych — Colorado Springs</p>
-            <a class="foot-mail" href="mailto:band@tinkersdamnband.com">
-                <Mail class="w-4 h-4"/> band@tinkersdamnband.com
-            </a>
-            <div class="foot-socials">
-                <a class="s-bandcamp" href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><Bandcamp class="w-5 h-5"/></a>
-                <a class="s-bluesky" href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"><Bluesky class="w-5 h-5"/></a>
-                <a class="s-instagram" href="https://www.instagram.com/tinkersdamnband" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram class="w-5 h-5"/></a>
-                <a class="s-facebook" href="https://www.facebook.com/tinkersdamnband" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook class="w-5 h-5"/></a>
-                <a class="s-youtube" href="https://www.youtube.com/@tinkersdamn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YouTube class="w-5 h-5"/></a>
-            </div>
-        </div>
-
-        <div class="foot-list">
-            <span class="label">Get on the list</span>
-            <iframe
-                class="foot-frame"
-                src="https://bandsintown.com/artist/3369257/email_signup_form?headerTextColor=rgba(236,228,211,1)&backgroundColor=rgba(20,17,15,1)&ctaBackgroundColor=rgba(196,32,42,1)&title=Mailing List&headerTextStyle=normal&headerText=New shows and records, straight to your inbox&font=Oswald&ctaIcon=hide&ctaBorderRadius=2px&ctaBorderWidth=2px&ctaBorderColor=rgba(196,32,42,1)&ctaFontColor=rgba(236,228,211,1)&alignment=center&emailInputField=hide&ctaLabel=Subscribe&layout=narrow&locale=en"
-                width="100%" height="240px" title="Mailing list signup"></iframe>
-        </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Tinker's <span>Damn</span></div>
+      <p>Alternative rock covers in Colorado Springs. Original grunge, stoner, and psych rock across the Front Range.</p>
+      <a class="email" href="mailto:band@tinkersdamnband.com">band@tinkersdamnband.com</a>
     </div>
-    <div class="foot-base">© {new Date().getFullYear()} Tinker's Damn</div>
+    <div class="footer-links" aria-label="Footer navigation">
+      <a href="/covers">Cover EPK</a>
+      <a href="/originals">Original EPK</a>
+      <a href="/shows">Shows</a>
+      <a href="/booking">Booking</a>
+      <a href="/stageplot.pdf" download>Stage plot</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><Bandcamp class="w-5 h-5" /></a>
+      <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"><Bluesky class="w-5 h-5" /></a>
+      <a href="https://www.instagram.com/tinkersdamnband" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram class="w-5 h-5" /></a>
+      <a href="https://www.facebook.com/tinkersdamnband" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook class="w-5 h-5" /></a>
+      <a href="https://www.youtube.com/@tinkersdamn" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YouTube class="w-5 h-5" /></a>
+    </div>
+  </div>
+  <div class="footer-base">© {new Date().getFullYear()} Tinker's Damn</div>
 </footer>
 
 <style>
-    .site-footer {
-        background: var(--color-char-2);
-        border-top: 3px solid var(--color-rust);
-        padding: 2.5rem 0 1.25rem;
-    }
-    .foot-in {
-        max-width: 70rem;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        gap: 2.5rem;
-        flex-wrap: wrap;
-    }
-    .foot-brand { font-family: var(--font-display); font-size: 1.7rem; color: var(--color-bone); letter-spacing: 0.02em; }
-    .foot-brand span { color: var(--color-spark); }
-    .foot-sub {
-        font-family: var(--font-condensed);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-size: 0.82rem;
-        color: var(--color-amber);
-        margin: 0.35rem 0 0.9rem;
-    }
-    .foot-mail {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: var(--font-mono);
-        font-size: 0.85rem;
-        color: var(--color-bone-dim);
-    }
-    .foot-mail:hover { color: var(--color-road); }
-    .foot-socials { display: flex; gap: 0.85rem; margin-top: 1rem; align-items: center; }
-    .foot-socials a { color: var(--color-bone-dim); transition: color 0.18s ease, transform 0.18s ease; }
-    .foot-socials a:hover { transform: translateY(-2px); }
-    .foot-socials .s-bandcamp:hover { color: #61929C; }
-    .foot-socials .s-bluesky:hover { color: #1185fe; }
-    .foot-socials .s-instagram:hover { color: #e1306c; }
-    .foot-socials .s-facebook:hover { color: #1877f2; }
-    .foot-socials .s-youtube:hover { color: #ff0000; }
-    .foot-list { flex: 1; min-width: 260px; max-width: 340px; }
-    .foot-frame { border: 2px solid rgba(196, 32, 42, 0.35); margin-top: 0.6rem; display: block; }
-    .foot-base {
-        max-width: 70rem;
-        margin: 2rem auto 0;
-        padding: 1rem 1.5rem 0;
-        border-top: 1px solid rgba(236, 228, 211, 0.1);
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--color-bone-dim);
-    }
+  .site-footer { padding: 3rem 0 1.25rem; background: #0d0b0a; border-top: 3px solid var(--page-accent, var(--color-rust)); }
+  .footer-inner { width: min(100% - 3rem, 70rem); margin: 0 auto; display: grid; grid-template-columns: 1.4fr .7fr auto; gap: 2.5rem; align-items: start; }
+  .footer-name { font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; }
+  .footer-name span { color: var(--page-accent, var(--color-road)); }
+  .footer-inner p { max-width: 48ch; margin: .4rem 0 .8rem; color: var(--color-bone-dim); font-size: .95rem; }
+  .email { font-family: var(--font-mono); font-size: .82rem; }
+  .footer-links { display: grid; gap: .45rem; }
+  .footer-links a { color: var(--color-bone-dim); font-family: var(--font-condensed); text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
+  .footer-links a:hover { color: var(--color-bone); }
+  .footer-socials { display: flex; gap: .45rem; }
+  .footer-socials a { display: grid; place-items: center; padding: .45rem; color: var(--color-bone-dim); }
+  .footer-socials a:hover { color: var(--page-accent, var(--color-road)); }
+  .footer-base { width: min(100% - 3rem, 70rem); margin: 2rem auto 0; padding-top: 1rem; border-top: 1px solid rgba(236,228,211,.12); color: #7f7669; font: .7rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+  @media (max-width: 760px) { .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; } }
 </style>

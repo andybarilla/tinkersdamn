@@ -1,0 +1,43 @@
+---
+const { compact = false } = Astro.props;
+---
+<div class:list={["tech-specs", { compact }]}>
+  <div>
+    <span class="label">Input list</span>
+    <ol class="input-list">
+      <li><strong>Kick</strong><span>Mic</span></li>
+      <li><strong>Bass</strong><span>DI</span></li>
+      <li><strong>Guitar</strong><span>DI</span></li>
+      <li><strong>Keys</strong><span>DI, requires +48V phantom power</span></li>
+      <li><strong>Courtney</strong><span>Vocal</span></li>
+      <li><strong>Andy</strong><span>Vocal</span></li>
+      <li><strong>Rob</strong><span>Vocal</span></li>
+      <li><strong>Shawn</strong><span>Vocal</span></li>
+    </ol>
+  </div>
+  <div class="tech-note">
+    <span class="label">Useful to know</span>
+    <p>Four-piece band, four singers, guitar direct to the board. We can adjust stage volume to fit the room instead of pretending every room is an arena.</p>
+    <a class="btn btn-ghost" href="/stageplot.pdf" download>Download stage plot</a>
+  </div>
+</div>
+
+<style>
+  .tech-specs {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr);
+    gap: 2rem;
+    align-items: start;
+    margin-top: 1.5rem;
+  }
+  .input-list { list-style: none; margin: 0.8rem 0 0; padding: 0; border-top: 1px solid rgba(236, 228, 211, 0.18); }
+  .input-list li { display: grid; grid-template-columns: minmax(7rem, 0.7fr) 1.3fr; gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid rgba(236, 228, 211, 0.14); }
+  .input-list span { color: var(--color-bone-dim); }
+  .tech-note { padding: 1.25rem; border: 2px solid rgba(242, 193, 78, 0.45); background: rgba(20, 17, 15, 0.45); }
+  .tech-note p { margin: 0.75rem 0 1.15rem; }
+  .compact { grid-template-columns: 1fr; }
+  @media (max-width: 760px) {
+    .tech-specs { grid-template-columns: 1fr; }
+    .input-list li { grid-template-columns: 6.5rem 1fr; }
+  }
+</style>

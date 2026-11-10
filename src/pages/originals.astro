@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TechSpecs from '../components/TechSpecs.astro';
+import Bandcamp from '../components/Bandcamp.astro';
+import { Image } from 'astro:assets';
+import { YouTube } from 'astro-embed';
+import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
+import albumCover from '../assets/earl-dr-cover.png';
+---
+<Layout
+  title="Original Music EPK"
+  description="Original grunge, stoner, and psych rock from Colorado Springs. Book Tinker's Damn across the Front Range. Album, live videos, band bio, press photo, and stage details."
+  ogImage={bandPhoto}
+  theme="original"
+>
+  <section class="original-hero">
+    <Image src={bandPhoto} alt="Tinker's Damn standing together in a Colorado Springs brewery" class="original-photo" loading="eager" quality={90} />
+    <div class="original-overlay"></div>
+    <div class="page-wrap original-copy">
+      <p class="section-kicker">Original music EPK · Colorado Front Range</p>
+      <h1>Heavy grooves. Bad ideas. Very few smiles.</h1>
+      <p>Grunge, stoner, and psych rock from Colorado Springs. Somewhere between Clutch and The Pretty Reckless.</p>
+      <div class="button-row">
+        <a class="btn btn-primary" href="mailto:band@tinkersdamnband.com?subject=Original%20music%20booking%20inquiry">Book the original set</a>
+        <a class="btn btn-ghost" href="#record">Hear the record</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="original-intro page-section">
+    <div class="page-wrap bio-grid">
+      <div>
+        <p class="section-kicker">The band</p>
+        <h2>Four people making the sensible amount of noise.</h2>
+        <p>Tinker's Damn started in Colorado Springs in 2014. During the pandemic downtime, the cover band grew an original side and followed it all the way into a debut album.</p>
+        <p>Courtney handles lead vocals and keys, Shawn plays guitar, Andy plays bass, and Rob plays drums. Everyone sings. The original show is a 45-minute full-electric set booked across the Front Range.</p>
+      </div>
+      <aside class="set-card">
+        <span>Original set</span>
+        <strong>45 minutes</strong>
+        <p>Grunge · Stoner · Psych</p>
+        <p>Colorado Springs to the Front Range</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="record-section page-section" id="record">
+    <div class="page-wrap record-grid">
+      <div class="album-stack">
+        <Image src={albumCover} alt="From the Depths of Earl Drive album cover" class="album-cover" />
+        <a href={bandPhoto.src} download="tinkers-damn-press-photo.jpg">Download press photo</a>
+      </div>
+      <div>
+        <p class="section-kicker">Debut album</p>
+        <h2>From the Depths of Earl Drive</h2>
+        <iframe class="album-embed" src="https://bandcamp.com/EmbeddedPlayer/album=3699694381/size=large/bgcol=14110f/linkcol=e0a32e/tracklist=true/transparent=true/" seamless title="From the Depths of Earl Drive by Tinker's Damn"><a href="https://tinkersdamn.bandcamp.com/album/from-the-depths-of-earl-drive">From the Depths of Earl Drive by Tinker's Damn</a></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="original-videos page-section">
+    <div class="page-wrap">
+      <p class="section-kicker">Watch</p>
+      <h2>Original videos</h2>
+      <div class="video-grid">
+        <YouTube id="https://www.youtube.com/watch?v=4BxkHsNscdA" title="Tinker's Damn: Journey Thru the Underworld lyric video" />
+        <YouTube id="https://www.youtube.com/watch?v=uLJ_V1NMJbM" title="Tinker's Damn: Safe live" />
+      </div>
+    </div>
+  </section>
+
+  <section class="original-shows page-section">
+    <div class="page-wrap">
+      <p class="section-kicker">Shows</p>
+      <h2>Upcoming dates</h2>
+      <div class="shows-widget"><Bandcamp bandId="id_3369257" appId="68c90bc813857bfdf502d57a42766be2" /></div>
+    </div>
+  </section>
+
+  <section class="original-tech page-section">
+    <div class="page-wrap">
+      <p class="section-kicker">Stage details</p>
+      <h2>Input list and stage plot</h2>
+      <TechSpecs />
+    </div>
+  </section>
+
+  <section class="original-cta page-section">
+    <div class="page-wrap cta-grid">
+      <div>
+        <p class="section-kicker">Booking</p>
+        <h2>Put us on the bill.</h2>
+        <p>For original bookings across the Front Range, send the date, venue, lineup details, and set time.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:band@tinkersdamnband.com?subject=Original%20music%20booking%20inquiry">band@tinkersdamnband.com</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .original-hero { position: relative; min-height: clamp(34rem, 72svh, 42rem); display: grid; align-items: end; overflow: hidden; background: #090807; }
+  .original-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; filter: grayscale(.25) saturate(.55) contrast(1.2) brightness(.68); }
+  .original-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,7,6,.97), rgba(8,7,6,.65) 52%, rgba(8,7,6,.18)), radial-gradient(circle at 75% 30%, rgba(196,32,42,.22), transparent 42%); }
+  .original-copy { position: relative; z-index: 1; padding-block: 4.5rem; }
+  .original-copy h1 { max-width: 14ch; font-size: clamp(3.25rem, 6vw, 6rem); }
+  .original-copy > p:not(.section-kicker) { max-width: 48ch; margin: 1.25rem 0 1.7rem; color: var(--color-bone-dim); font-size: 1.25rem; }
+  .original-intro, .record-section, .original-videos, .original-shows, .original-tech, .original-cta { background: #14110f; }
+  .original-intro { background: #1d1916; }
+  .bio-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(2rem, 7vw, 6rem); align-items: center; }
+  .bio-grid p:not(.section-kicker) { max-width: 64ch; color: var(--color-bone-dim); margin-top: .85rem; }
+  .set-card { padding: 1.5rem; border: 2px solid rgba(224,163,46,.55); background: #100e0c; box-shadow: 10px 10px 0 #090807; }
+  .set-card span { font: 500 .75rem var(--font-mono); color: var(--color-amber); letter-spacing: .15em; text-transform: uppercase; }
+  .set-card strong { display: block; margin: .5rem 0 1rem; font: 400 clamp(3rem, 7vw, 5.5rem)/.9 var(--font-display); color: var(--color-bone); text-transform: uppercase; }
+  .set-card p { margin: .35rem 0 !important; }
+  .record-section { background: #0c0a09; }
+  .record-grid { display: grid; grid-template-columns: minmax(16rem, 24rem) 1fr; gap: clamp(2rem, 7vw, 6rem); align-items: start; }
+  .album-stack { display: grid; gap: 1rem; }
+  .album-cover { width: 100%; box-shadow: 14px 14px 0 #000; }
+  .album-stack a { font-family: var(--font-mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+  .album-embed { width: 100%; max-width: 30rem; height: 638px; border: 0; margin-top: 1.5rem; display: block; }
+  .original-videos { background: #20110f; }
+  .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+  .video-grid > :global(*) { border: 2px solid rgba(224,163,46,.35); }
+  .original-shows { background: #ece4d3; color: #2a241d; }
+  .original-shows h2 { color: #2a241d; }
+  .original-shows .section-kicker { color: #8a1b22; }
+  .shows-widget { margin-top: 1.5rem; }
+  .shows-widget :global(.show-item) { border-color: rgba(42,36,29,.3); }
+  .original-tech { background: #14110f; }
+  .original-cta { background: #080706; border-top: 1px solid rgba(224,163,46,.25); }
+  .cta-grid { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .cta-grid p:not(.section-kicker) { color: var(--color-bone-dim); }
+  @media (max-width: 800px) {
+    .original-hero { min-height: 38rem; }
+    .original-overlay { background: linear-gradient(0deg, rgba(8,7,6,.98), rgba(8,7,6,.68) 68%, rgba(8,7,6,.2)); }
+    .original-copy { padding-block: 15rem 3.5rem; }
+    .original-copy h1 { font-size: clamp(3.1rem, 14vw, 5rem); }
+    .bio-grid, .record-grid { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    .cta-grid { flex-direction: column; align-items: flex-start; }
+  }
+</style>

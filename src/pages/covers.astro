@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TechSpecs from '../components/TechSpecs.astro';
+import Bandcamp from '../components/Bandcamp.astro';
+import { Image } from 'astro:assets';
+import coverPhoto from '../assets/covers-band-brewery.jpg';
+import { coverRepertoire } from '../data/repertoire';
+---
+<Layout
+  title="Cover Band EPK"
+  description="Book Tinker's Damn for alternative rock covers in Colorado Springs. Flexible 45-minute, two-hour, and three-hour formats, four singers, videos, repertoire, and stage details."
+  ogImage={coverPhoto}
+  theme="cover"
+>
+  <section class="cover-hero">
+    <div class="cover-photo-wrap">
+      <Image src={coverPhoto} alt="Tinker's Damn laughing together in a Colorado Springs brewery" class="cover-photo" loading="eager" quality={90} />
+    </div>
+    <div class="cover-hero-copy page-wrap">
+      <p class="tape">Cover EPK · Colorado Springs</p>
+      <h1>The songs you wore out before streaming existed.</h1>
+      <p>Alternative rock from the 80s, 90s, and 2000s. Familiar enough to pull people in, played like we still mean it.</p>
+      <div class="button-row">
+        <a class="btn btn-cover" href="mailto:band@tinkersdamnband.com?subject=Cover%20booking%20inquiry">Ask about a date</a>
+        <a class="btn btn-light" href="#video">Watch the band</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cover-intro page-section">
+    <div class="page-wrap intro-grid">
+      <div>
+        <p class="section-kicker dark-kicker">What you are booking</p>
+        <h2>A rock band, not a theme party.</h2>
+        <p class="big-copy">Tinker's Damn is a female-fronted four-piece with four vocalists and a set built around formative alternative rock. We cover the obvious big songs, but we also remember Concrete Blonde, Veruca Salt, Spacehog, and the part of the record store that did not fit neatly on one shelf.</p>
+      </div>
+      <aside class="booking-note">
+        <span class="scribble">Short version</span>
+        <ul>
+          <li>Booked in Colorado Springs</li>
+          <li>All four members sing</li>
+          <li>Guitar runs DI</li>
+          <li>Stage volume can fit the room</li>
+          <li>No wigs. No fake British accents.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="formats page-section">
+    <div class="page-wrap">
+      <p class="section-kicker">Set formats</p>
+      <h2>From one strong set to most of your evening.</h2>
+      <p class="section-lead">Local rooms commonly book two-, three-, or four-hour windows. Tell us the schedule and we will tell you the cleanest fit.</p>
+      <div class="format-grid">
+        <article><strong>45</strong><span>minute set</span><p>A focused festival, support, or event slot.</p></article>
+        <article><strong>2×60</strong><span>minutes</span><p>Two full sets with a break. A solid two-hour booking format.</p></article>
+        <article><strong>3×60</strong><span>minutes</span><p>Three sets plus breaks for a typical four-hour bar or brewery night.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section page-section" id="video">
+    <div class="page-wrap video-grid">
+      <div>
+        <p class="section-kicker dark-kicker">Live video</p>
+        <h2>See what this looks like with electricity.</h2>
+        <p>Our cover playlist has live clips in one place. Start here, then keep watching if your attention span survived cable television.</p>
+        <a class="text-link dark-link" href="https://www.youtube.com/playlist?list=PLojowfiHhBlMFviQ-31BxKt-1YjnkRTpz" target="_blank" rel="noopener noreferrer">Open the full YouTube playlist <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLojowfiHhBlMFviQ-31BxKt-1YjnkRTpz" title="Tinker's Damn cover videos playlist" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="repertoire page-section" id="repertoire">
+    <div class="page-wrap">
+      <p class="section-kicker">Representative repertoire</p>
+      <h2>A sample from the current rotation.</h2>
+      <p class="section-lead">This is a selection, not the ceiling. We add three or four songs most practices and keep a bench of older material we can bring back when a room calls for it. Longer bookings are built around the date, the room, and the crowd, because three straight hours in alphabetical order would be a fairly hostile choice.</p>
+      <ol class="song-list">
+        {coverRepertoire.map((song) => (
+          <li><span>{song.title}</span><small>{song.artist}</small></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="shows-block page-section">
+    <div class="page-wrap">
+      <p class="section-kicker dark-kicker">Upcoming shows</p>
+      <h2>Come investigate in person.</h2>
+      <div class="shows-widget"><Bandcamp bandId="id_3369257" appId="68c90bc813857bfdf502d57a42766be2" /></div>
+    </div>
+  </section>
+
+  <section class="tech-block page-section">
+    <div class="page-wrap">
+      <p class="section-kicker">Stage details</p>
+      <h2>Input list and stage plot</h2>
+      <TechSpecs />
+    </div>
+  </section>
+
+  <section class="cover-cta page-section">
+    <div class="page-wrap cta-inner">
+      <div>
+        <p class="section-kicker dark-kicker">Booking</p>
+        <h2>Need a Colorado Springs cover band?</h2>
+        <p>Send the date, venue, expected schedule, and anything else that matters. We will get back to you without making you fill out a seven-step lead form.</p>
+      </div>
+      <a class="btn btn-cover" href="mailto:band@tinkersdamnband.com?subject=Cover%20booking%20inquiry">band@tinkersdamnband.com</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cover-hero { position: relative; min-height: clamp(34rem, 72svh, 42rem); display: grid; align-items: end; overflow: hidden; background: #15110e; }
+  .cover-photo-wrap { position: absolute; inset: 0; }
+  .cover-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .cover-photo-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,13,10,.96), rgba(18,13,10,.68) 48%, rgba(18,13,10,.1)), linear-gradient(0deg, rgba(18,13,10,.85), transparent 55%); }
+  .cover-hero-copy { position: relative; z-index: 1; padding-block: 4.5rem; }
+  .cover-hero h1 { max-width: 14ch; font-size: clamp(3.25rem, 6vw, 6rem); color: #fff8e6; text-shadow: 5px 5px 0 var(--cover-pink); }
+  .cover-hero-copy > p:not(.tape) { max-width: 48ch; margin: 1.25rem 0 1.7rem; color: #fff7e6; font-size: 1.25rem; }
+  .tape { display: inline-block; padding: .35rem .75rem; margin-bottom: 1rem; color: #1c1712; background: var(--cover-yellow); font: 700 .78rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; transform: rotate(-1deg); }
+  .cover-intro, .video-section, .shows-block, .cover-cta { background: #f1e8d7; color: #241d17; }
+  .cover-intro h2, .video-section h2, .shows-block h2, .cover-cta h2 { color: #241d17; }
+  .intro-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .big-copy { max-width: 65ch; font-size: 1.18rem; }
+  .booking-note { padding: 1.5rem; background: var(--cover-yellow); border: 3px solid #241d17; box-shadow: 8px 8px 0 #241d17; transform: rotate(1deg); }
+  .booking-note ul { margin: .75rem 0 0; padding-left: 1.2rem; }
+  .booking-note li { margin: .45rem 0; font-weight: 600; }
+  .scribble { color: #8f1d4e; font-family: 'Permanent Marker', cursive; font-size: 1.25rem; }
+  .formats { background: #d93677; }
+  .formats h2, .formats .section-kicker { color: #fff8e6; }
+  .formats .section-lead { color: #ffe3ef; }
+  .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+  .format-grid article { padding: 1.5rem; background: #fff8e6; color: #241d17; border: 3px solid #241d17; box-shadow: 7px 7px 0 #241d17; }
+  .format-grid strong { display: block; font: 400 clamp(3.2rem, 7vw, 5.5rem)/.9 var(--font-display); color: #241d17; }
+  .format-grid span { font: 700 .85rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+  .format-grid p { margin-top: .8rem; font-size: 1rem; }
+  .video-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .video-frame { border: 4px solid #241d17; box-shadow: 10px 10px 0 var(--cover-pink); background: #111; aspect-ratio: 16/9; transform: rotate(-.5deg); }
+  .video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .dark-link { color: #8f1d4e; }
+  .repertoire { background: #171411; }
+  .song-list { list-style: none; padding: 0; margin: 2rem 0 0; columns: 2; column-gap: 2rem; }
+  .song-list li { break-inside: avoid; display: flex; justify-content: space-between; gap: 1rem; padding: .68rem .2rem; border-bottom: 1px dotted rgba(236,228,211,.26); }
+  .song-list span { font-weight: 700; color: var(--color-bone); }
+  .song-list small { color: var(--color-bone-dim); text-align: right; font-family: var(--font-mono); font-size: .72rem; }
+  .shows-widget { margin-top: 1.5rem; color: #241d17; }
+  .shows-widget :global(.show-item) { border-color: rgba(36,29,23,.3); }
+  .tech-block { background: #171411; }
+  .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .cta-inner p:not(.section-kicker) { max-width: 60ch; }
+  @media (max-width: 800px) {
+    .cover-hero { min-height: 38rem; }
+    .cover-photo-wrap::after { background: linear-gradient(0deg, rgba(18,13,10,.98), rgba(18,13,10,.65) 68%, rgba(18,13,10,.1)); }
+    .cover-hero-copy { padding-block: 15rem 3.5rem; }
+    .cover-hero h1 { font-size: clamp(3.2rem, 15vw, 5rem); }
+    .intro-grid, .video-grid { grid-template-columns: 1fr; }
+    .format-grid { grid-template-columns: 1fr; }
+    .song-list { columns: 1; }
+    .cta-inner { align-items: flex-start; flex-direction: column; }
+  }
+</style>

@@ -1,103 +1,93 @@
 ---
-import Guitar from './icons/Guitar.astro';
-import Calendar from './icons/Calendar.astro';
-import MusicNote from './icons/MusicNote.astro';
-import Video from './icons/Video.astro';
-import Mail from './icons/Mail.astro';
-import Info from './icons/Info.astro';
-import Bluesky from './icons/Bluesky.astro';
-import Bandcamp from "./icons/Bandcamp.astro";
+import Bandcamp from './icons/Bandcamp.astro';
+import Instagram from './icons/Instagram.astro';
 ---
-
-<nav class="nav-bar w-full sticky top-0 z-50">
-    <div class="px-3 w-full">
-        <div class="flex items-center justify-between">
-            <div class="hidden md:flex">
-                <a href="/#navigation-start" class="nav-link"><Guitar class="w-5 h-5" /><span>Home</span></a>
-                <a href="/shows" class="nav-link"><Calendar class="w-5 h-5" /><span>Shows</span></a>
-                <a href="/music" class="nav-link"><MusicNote class="w-5 h-5" /><span>Music</span></a>
-                <a href="/videos" class="nav-link"><Video class="w-5 h-5" /><span>Videos</span></a>
-                <a href="/booking" class="nav-link"><Mail class="w-5 h-5" /><span>Booking</span></a>
-                <a href="/about" class="nav-link"><Info class="w-5 h-5" /><span>About</span></a>
-            </div>
-            <div class="hidden md:flex w-full justify-end items-center">
-                <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" class="social-link bandcamp" aria-label="Bandcamp"><Bandcamp class="w-5 h-5" /></a>
-                <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer" class="social-link bluesky" aria-label="Bluesky"><Bluesky class="w-5 h-5" /></a>
-            </div>
-            <div class="md:hidden">
-                <button id="nav-toggle" class="text-bone focus:outline-none" aria-label="Toggle menu">
-                    <svg class="h-6 w-6 mt-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
+<nav class="navigation" aria-label="Main navigation">
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+    <span class="sr-only" id="nav-toggle-label">Open menu</span>
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-menu" id="nav-menu">
+    <a href="/covers">Covers</a>
+    <a href="/originals">Originals</a>
+    <a href="/shows">Shows</a>
+    <a href="/about">About</a>
+    <a href="/booking" class="booking-link">Booking</a>
+    <span class="socials">
+      <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Tinker's Damn on Bandcamp"><Bandcamp class="w-5 h-5" /></a>
+      <a href="https://www.instagram.com/tinkersdamnband" target="_blank" rel="noopener noreferrer" aria-label="Tinker's Damn on Instagram"><Instagram class="w-5 h-5" /></a>
+    </span>
+  </div>
 </nav>
-<div id="mobile-menu" class="mobile-menu hidden md:hidden w-full sticky top-[44px] z-40">
-    <a href="/" class="m-link">Home</a>
-    <a href="/shows" class="m-link">Shows</a>
-    <a href="/music" class="m-link">Music</a>
-    <a href="/videos" class="m-link">Videos</a>
-    <a href="/booking" class="m-link">Booking</a>
-    <a href="/about" class="m-link">About</a>
-</div>
 
 <style>
-    .nav-bar {
-        background: rgba(20, 17, 15, 0.92);
-        backdrop-filter: blur(8px) saturate(140%);
-        border-bottom: 2px solid var(--color-rust);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  .navigation { display: flex; align-items: center; }
+  .nav-menu { display: flex; align-items: center; gap: 0.15rem; }
+  .nav-menu > a {
+    color: var(--color-bone-dim);
+    font-family: var(--font-condensed);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    padding: 0.7rem 0.65rem;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-menu > a:hover, .nav-menu > a[aria-current="page"] { color: var(--color-bone); background: rgba(255,255,255,0.07); }
+  .booking-link { color: var(--color-char) !important; background: var(--page-accent, var(--color-road)); margin-left: 0.3rem; }
+  .booking-link:hover { color: var(--color-char) !important; filter: brightness(1.08); }
+  .socials { display: flex; align-items: center; margin-left: 0.35rem; }
+  .socials a { color: var(--color-bone-dim); display: grid; place-items: center; padding: 0.55rem; }
+  .socials a:hover { color: var(--color-bone); }
+  .nav-toggle { display: none; width: 2.75rem; height: 2.75rem; padding: 0.65rem; background: transparent; border: 1px solid rgba(236,228,211,.25); }
+  .nav-toggle span:not(.sr-only) { display: block; height: 2px; margin: 4px 0; background: var(--color-bone); }
+  @media (max-width: 860px) {
+    .nav-toggle { display: block; }
+    .nav-menu {
+      display: none;
+      position: absolute;
+      inset: 4rem 0 auto;
+      padding: 0.75rem 1rem 1rem;
+      background: rgba(20, 17, 15, 0.98);
+      border-bottom: 3px solid var(--page-accent, var(--color-rust));
+      box-shadow: 0 14px 24px rgba(0,0,0,.35);
+      align-items: stretch;
+      flex-direction: column;
     }
-    .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: var(--font-condensed);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.92rem;
-        color: var(--color-bone-dim);
-        text-decoration: none;
-        padding: 0.55rem 0.85rem;
-        transition: color 0.18s ease, background 0.18s ease;
-    }
-    .nav-link:hover { color: var(--color-char); background: var(--color-road); }
-
-    .social-link {
-        color: var(--color-bone-dim);
-        padding: 0.5rem;
-        display: flex;
-        align-items: center;
-        transition: color 0.18s ease;
-    }
-    .social-link.bandcamp:hover { color: #61929C; }
-    .social-link.bluesky:hover { color: #1185fe; }
-
-    .mobile-menu {
-        background: rgba(20, 17, 15, 0.96);
-        backdrop-filter: blur(8px);
-        border-bottom: 2px solid var(--color-rust);
-    }
-    .m-link {
-        display: block;
-        font-family: var(--font-condensed);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--color-bone);
-        text-decoration: none;
-        text-align: center;
-        padding: 0.85rem 1rem;
-        border-bottom: 1px solid rgba(196, 32, 42, 0.2);
-        transition: background 0.18s ease, color 0.18s ease;
-    }
-    .m-link:hover { background: var(--color-road); color: var(--color-char); }
+    .nav-menu.open { display: flex; }
+    .nav-menu > a { width: 100%; text-align: center; padding: 0.85rem; }
+    .booking-link { margin: 0.25rem 0 0; }
+    .socials { justify-content: center; margin: 0.35rem 0 0; }
+  }
 </style>
+
 <script>
-    const navToggle = document.getElementById('nav-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    navToggle?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
+  function setupNavigation() {
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    const label = document.getElementById('nav-toggle-label');
+    if (!toggle || !menu || toggle.dataset.ready) return;
+    toggle.dataset.ready = 'true';
+
+    const setOpen = (open) => {
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      if (label) label.textContent = open ? 'Close menu' : 'Open menu';
+    };
+
+    toggle.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.classList.contains('open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    menu.querySelectorAll('a[href^="/"]').forEach((link) => {
+      if (link.getAttribute('href') === path) link.setAttribute('aria-current', 'page');
+    });
+  }
+  document.addEventListener('astro:page-load', setupNavigation);
+  setupNavigation();
 </script>

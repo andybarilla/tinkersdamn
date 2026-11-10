@@ -1,68 +1,152 @@
 ---
-import '../styles/global.css';
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import {getCollection} from 'astro:content';
-import Post from "../components/Post.astro";
-import Hero from "../components/Hero.astro";
-import PromoHero from "../components/PromoHero.astro";
-import { ClientRouter } from 'astro:transitions';
-import ogImage from '../assets/bandphoto2022adjusted2.jpg';
-
-const allPosts = (await getCollection('blog'))
-    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
-const description = "Original grunge, stoner, and psychedelic rock from Colorado Springs. New album From the Depths of Earl Drive out now.";
-const ogImageUrl = new URL(ogImage.src, Astro.site);
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import coverPhoto from '../assets/covers-band-brewery.jpg';
+import originalPhoto from '../assets/bandphoto2022adjusted2.jpg';
+import albumCover from '../assets/earl-dr-cover.png';
 ---
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <meta name="generator" content={Astro.generator}/>
-    <title>Tinker's Damn — Grunge & Stoner Rock from Colorado Springs</title>
-    <meta name="description" content={description}/>
-    <meta property="og:title" content="Tinker's Damn"/>
-    <meta property="og:description" content={description}/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content={ogImageUrl}/>
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Tinker's Damn"/>
-    <meta name="twitter:description" content={description}/>
-    <meta name="twitter:image" content={ogImageUrl}/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <ClientRouter />
-</head>
-<body>
+<Layout
+  title="Tinker's Damn"
+  description="Book Tinker's Damn for alternative rock covers in Colorado Springs, or catch the band's original grunge, stoner, and psych rock across the Front Range."
+  ogImage={coverPhoto}
+  theme="cover"
+>
+  <section class="home-hero">
+    <Image src={coverPhoto} alt="The four members of Tinker's Damn laughing together in a Colorado Springs brewery" class="home-photo" loading="eager" quality={88} />
+    <div class="home-shade"></div>
+    <div class="home-copy page-wrap">
+      <p class="tape-label">Colorado Springs cover band</p>
+      <h1>The songs you wore out before streaming existed.</h1>
+      <p class="hero-lead">Alternative rock from the 80s, 90s, and 2000s, played by four people who remember when finding music required leaving the house.</p>
+      <div class="button-row">
+        <a class="btn btn-cover" href="/covers">Book the cover band</a>
+        <a class="btn btn-dark" href="/originals">Hear the originals</a>
+      </div>
+    </div>
+  </section>
 
-<PromoHero/>
-<Hero/>
+  <section class="cover-strip" aria-label="Cover band highlights">
+    <div class="page-wrap quick-facts">
+      <span>Female-fronted</span><span>Four-piece</span><span>Adjustable stage volume</span>
+      <button class="singer-fact" type="button" aria-label="Four singers. Fine. Three singers and a guy who goes woah." aria-pressed="false">
+        <span class="singer-fact-default">Four singers*</span>
+        <span class="singer-fact-reveal" aria-hidden="true">Fine. Three singers and a guy who goes “woah.”</span>
+      </button>
+    </div>
+  </section>
 
-<div id="navigation-start">
-    <Header showLogo={false}/>
-</div>
+  <section class="path-section page-section">
+    <div class="page-wrap">
+      <p class="section-kicker">Two sides of the same band</p>
+      <h2>Pick your Tinker's Damn</h2>
+      <div class="path-grid">
+        <article class="path-card cover-card">
+          <div class="path-image"><Image src={coverPhoto} alt="Tinker's Damn in a brewery" /></div>
+          <div class="path-copy">
+            <p class="marker-note">For bars, breweries, events, and rooms that need a real night of music</p>
+            <h3>Cover bookings</h3>
+            <p>Big alternative rock songs, a flexible set, and enough range to move from Blondie to Rage Against the Machine without making it weird.</p>
+            <ul>
+              <li>45 minutes, 2x60, or 3x60</li>
+              <li>Booked in Colorado Springs</li>
+              <li>Full repertoire and video playlist</li>
+            </ul>
+            <a class="text-link" href="/covers">Open the cover EPK <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
 
-<main>
-    <section class="panel panel-dark">
-        <div class="wrap">
-            <div class="sec-label">
-                <span class="label">Latest</span>
-                <span class="line"></span>
-            </div>
-            {allPosts.map((post, index) => (
-                <div style={`animation-delay: ${index * 0.1}s`}>
-                    <Post id={post.id} key={index}/>
-                </div>
-            ))}
+        <article class="path-card original-card">
+          <div class="path-image"><Image src={originalPhoto} alt="Tinker's Damn standing together in a brewery" /></div>
+          <div class="path-copy">
+            <p class="section-kicker">The darker half</p>
+            <h3>Original bookings</h3>
+            <p>Grunge, stoner, and psych rock from Colorado Springs. Somewhere between Clutch and The Pretty Reckless, with fewer smiles in the photos.</p>
+            <ul>
+              <li>45-minute original set</li>
+              <li>Booked across the Front Range</li>
+              <li>Album, videos, press photo, and tech</li>
+            </ul>
+            <a class="text-link" href="/originals">Open the original EPK <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="album-callout page-section">
+    <div class="page-wrap album-grid">
+      <Image src={albumCover} alt="From the Depths of Earl Drive album cover" class="album-art" />
+      <div>
+        <p class="section-kicker">Also, we made a record</p>
+        <h2>From the Depths of Earl Drive</h2>
+        <p>Our debut album is out now on Bandcamp. It is not a collection of covers. Apparently we needed another expensive hobby inside the first one.</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://tinkersdamn.bandcamp.com/album/from-the-depths-of-earl-drive" target="_blank" rel="noopener noreferrer">Listen on Bandcamp</a>
+          <a class="btn btn-ghost" href="/shows">See shows</a>
         </div>
-    </section>
-</main>
+      </div>
+    </div>
+  </section>
+</Layout>
 
-<Footer/>
+<style>
+  .home-hero { position: relative; min-height: clamp(30rem, 64svh, 36rem); display: grid; align-items: end; overflow: hidden; background: #16120f; }
+  .home-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .home-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,12,10,.94) 0%, rgba(15,12,10,.72) 42%, rgba(15,12,10,.12) 78%), linear-gradient(0deg, rgba(15,12,10,.85), transparent 50%); }
+  .home-copy { position: relative; z-index: 1; padding-top: 3rem; padding-bottom: 3rem; }
+  .home-copy h1 { max-width: 18ch; font-size: clamp(3.1rem, 5vw, 5rem); color: #fff7df; text-shadow: 5px 5px 0 #d93677; }
+  .hero-lead { max-width: 54ch; margin: 1.5rem 0 1.8rem; color: #fff5dd; font-size: clamp(1.1rem, 2vw, 1.35rem); }
+  .tape-label { display: inline-block; margin-bottom: 1.1rem; padding: .35rem .75rem; color: #1c1712; background: var(--cover-yellow); font: 700 .8rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; transform: rotate(-1deg); box-shadow: 4px 4px 0 rgba(0,0,0,.45); }
+  .cover-strip { background: var(--cover-pink); color: #fff; border-block: 4px solid #17120f; }
+  .quick-facts { display: flex; justify-content: center; flex-wrap: wrap; gap: .35rem 2.5rem; padding-block: 1rem; font: 700 .9rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+  .quick-facts > span::before, .singer-fact::before { content: '◆'; margin-right: .65rem; color: var(--cover-yellow); }
+  .singer-fact { width: auto; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; white-space: nowrap; cursor: help; }
+  .singer-fact-reveal { display: none; }
+  .singer-fact:hover .singer-fact-default, .singer-fact:focus-visible .singer-fact-default, .singer-fact.revealed .singer-fact-default { display: none; }
+  .singer-fact:hover .singer-fact-reveal, .singer-fact:focus-visible .singer-fact-reveal, .singer-fact.revealed .singer-fact-reveal { display: inline; }
+  .path-section { background: #efe6d3; color: #231d18; }
+  .path-section h2 { color: #231d18; }
+  .path-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1.5rem; margin-top: 2rem; }
+  .path-card { border: 3px solid #231d18; box-shadow: 9px 9px 0 #231d18; overflow: hidden; }
+  .cover-card { background: #fff8e8; transform: rotate(-.4deg); }
+  .original-card { background: #171411; color: var(--color-bone); transform: rotate(.5deg); }
+  .path-image { aspect-ratio: 16/9; overflow: hidden; border-bottom: 3px solid currentColor; }
+  .path-image :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .original-card .path-image :global(img) { filter: contrast(1.12) saturate(.65) brightness(.75); }
+  .path-copy { padding: clamp(1.35rem, 3vw, 2rem); }
+  .path-copy h3 { font-size: clamp(2rem, 4vw, 3.3rem); color: inherit; }
+  .path-copy p { margin: .8rem 0; }
+  .path-copy ul { margin: 1rem 0 1.25rem; padding-left: 1.2rem; }
+  .path-copy li { margin: .35rem 0; }
+  .marker-note { display: inline; color: #8b1d4b; font-family: 'Permanent Marker', cursive; font-size: 1rem !important; line-height: 1.2; }
+  .original-card .section-kicker { color: var(--color-amber); }
+  .album-callout { background: #171411; }
+  .album-grid { display: grid; grid-template-columns: minmax(15rem, 24rem) 1fr; align-items: center; gap: clamp(2rem, 6vw, 5rem); }
+  .album-art { width: 100%; box-shadow: 14px 14px 0 #050404; transform: rotate(-1deg); }
+  .album-grid p:not(.section-kicker) { max-width: 55ch; margin: 1rem 0 1.5rem; color: var(--color-bone-dim); }
+  @media (max-width: 800px) {
+    .home-hero { min-height: 38rem; }
+    .home-shade { background: linear-gradient(0deg, rgba(15,12,10,.98) 0%, rgba(15,12,10,.65) 62%, rgba(15,12,10,.12) 100%); }
+    .home-copy { padding-top: 15rem; padding-bottom: 3.5rem; }
+    .home-copy h1 { font-size: clamp(3rem, 15vw, 5rem); }
+    .path-grid, .album-grid { grid-template-columns: 1fr; }
+    .singer-fact { white-space: normal; }
+    .path-card { transform: none; }
+    .album-art { max-width: 22rem; }
+  }
+</style>
 
-</body>
-</html>
+<script>
+  function setupSingerFact() {
+    const button = document.querySelector('.singer-fact');
+    if (!(button instanceof HTMLButtonElement) || button.dataset.ready) return;
+    button.dataset.ready = 'true';
+    button.addEventListener('click', () => {
+      const revealed = button.classList.toggle('revealed');
+      button.setAttribute('aria-pressed', String(revealed));
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupSingerFact);
+  setupSingerFact();
+</script>

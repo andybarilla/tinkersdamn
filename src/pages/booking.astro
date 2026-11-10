@@ -1,84 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Panel from '../components/Panel.astro';
-import { Image } from 'astro:assets';
-import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
-import { YouTube } from 'astro-embed';
 ---
 <Layout
-    title="Booking & Press"
-    description="Book Tinker's Damn — original grunge/stoner/psych rock from Colorado Springs. Bio, music, live video, press photo, and tech info.">
-
-    <Panel tone="dark">
-        <div class="sec-label"><span class="label">Booking & Press</span><span class="line"></span></div>
-        <h1>Book The Band</h1>
-        <p class="lead">Original grunge / stoner / psych rock from Colorado Springs — a cross between Clutch and The Pretty Reckless. Booking shows across the Front Range.</p>
-        <div class="cta">
-            <a class="btn btn-primary" href="mailto:band@tinkersdamnband.com">Book Us</a>
-            <a class="btn btn-ghost" href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer">Listen</a>
-        </div>
-        <div class="media">
-            <iframe class="album-embed" style="border:0;height:470px;"
-                src="https://bandcamp.com/EmbeddedPlayer/album=3699694381/size=large/bgcol=14110f/linkcol=e0a32e/tracklist=true/transparent=true/"
-                seamless title="From the Depths of Earl Drive">
-                <a href="https://tinkersdamn.bandcamp.com/album/from-the-depths-of-earl-drive">From the Depths of Earl Drive by Tinker's Damn</a>
-            </iframe>
-            <YouTube id="https://www.youtube.com/watch?v=uLJ_V1NMJbM" title="Tinker's Damn: Safe (The Scrote Song) [Live]" class="live-vid"/>
-        </div>
-    </Panel>
-
-    <Panel tone="paper" divider="down">
-        <div class="sec-label"><span class="label">The Band</span><span class="line"></span></div>
-        <h2 class="misreg">Four-Piece, Full Electric</h2>
-        <div class="band-grid">
-            <div>
-                <p>Courtney (vocals, keys), Shawn (guitar), Andy (bass), and Rob (drums) have rocked Colorado Springs since 2014 — a cover band that turned all-original in 2023. Debut album <em>From the Depths of Earl Drive</em> out now.</p>
-                <p>Live, we play a 45-minute original set: full electric, multi-vocal, loud.</p>
-                <p><a href={bandPhoto.src} download="tinkers-damn.jpg">Download press photo &rarr;</a></p>
-            </div>
-            <div class="press-photo"><Image src={bandPhoto} alt="Tinker's Damn band photo"/></div>
-        </div>
-    </Panel>
-
-    <Panel tone="dark" divider="up">
-        <div class="sec-label"><span class="label">Tech</span><span class="line"></span></div>
-        <h2>Stage & Input List</h2>
-        <ol class="inputs">
-            <li>Kick — mic</li>
-            <li>Bass — DI</li>
-            <li>Guitar — mic'd cab</li>
-            <li>Keys — DI <span class="warn">(requires +48V phantom power)</span></li>
-            <li>Vocals — Courtney (lead)</li>
-            <li>Vocals — Andy</li>
-            <li>Vocals — Rob</li>
-        </ol>
-        <p>Courtney runs in-ears; three wedge mixes for the rest. We bring our own backline. Full stage plot available on request.</p>
-        <div class="contact">
-            <span class="label">Contact</span>
-            <p>
-                Booking: <a href="mailto:band@tinkersdamnband.com">band@tinkersdamnband.com</a><br>
-                <a href="https://tinkersdamn.bandcamp.com" target="_blank" rel="noopener noreferrer">Bandcamp</a> ·
-                <a href="https://bsky.app/profile/tinkersdamnband.com" target="_blank" rel="noopener noreferrer">Bluesky</a> ·
-                <a href="https://www.instagram.com/tinkersdamnband" target="_blank" rel="noopener noreferrer">Instagram</a> ·
-                <a href="https://www.facebook.com/tinkersdamnband" target="_blank" rel="noopener noreferrer">Facebook</a> ·
-                <a href="https://www.youtube.com/@tinkersdamn" target="_blank" rel="noopener noreferrer">YouTube</a>
-            </p>
-        </div>
-    </Panel>
+  title="Booking"
+  description="Book Tinker's Damn for alternative rock covers in Colorado Springs or original grunge, stoner, and psych rock across the Front Range."
+  theme="default"
+>
+  <section class="booking-page page-section">
+    <div class="page-wrap">
+      <p class="section-kicker">Booking</p>
+      <h1>Which band are you looking for?</h1>
+      <p class="intro">Same four people, two different kinds of night. Pick the useful press kit below, or email us directly if you already know what you need.</p>
+      <div class="booking-grid">
+        <article class="cover-choice">
+          <span>Colorado Springs</span>
+          <h2>Alternative rock covers</h2>
+          <p>80s, 90s, and 2000s alternative rock. Flexible formats from 45 minutes through three one-hour sets.</p>
+          <a class="btn btn-cover" href="/covers">Cover booking EPK</a>
+        </article>
+        <article class="original-choice">
+          <span>Colorado Front Range</span>
+          <h2>Original rock</h2>
+          <p>A 45-minute grunge, stoner, and psych set, with the album, videos, press photo, and stage details.</p>
+          <a class="btn btn-primary" href="/originals">Original music EPK</a>
+        </article>
+      </div>
+      <div class="direct-contact">
+        <p class="section-kicker">Direct contact</p>
+        <a href="mailto:band@tinkersdamnband.com">band@tinkersdamnband.com</a>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-    .lead { max-width: 60ch; font-size: 1.15rem; margin-top: 0.5rem; }
-    .cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin: 1.5rem 0; }
-    .media { display: grid; grid-template-columns: minmax(0, 24rem) 1fr; gap: 1.5rem; align-items: start; margin-top: 1rem; }
-    .album-embed { width: 100%; display: block; }
-    .live-vid { width: 100%; }
-    .band-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.25rem; align-items: center; margin-top: 1rem; }
-    .band-grid p { margin-bottom: 0.9rem; }
-    .press-photo { justify-self: center; transform: rotate(-1.5deg); }
-    .press-photo :global(img) { border: 8px solid #fff; box-shadow: 8px 10px 0 rgba(20, 17, 15, 0.22); display: block; }
-    .inputs { list-style: decimal; padding-left: 1.4rem; margin: 1rem 0; line-height: 1.9; }
-    .inputs .warn { color: var(--color-road); font-weight: 600; }
-    .contact { margin-top: 1.75rem; }
-    @media (max-width: 820px) { .media, .band-grid { grid-template-columns: 1fr; } .press-photo { justify-self: start; } }
+  .booking-page { min-height: 65vh; background: #171411; }
+  .booking-page h1 { max-width: 15ch; font-size: clamp(3rem, 7vw, 6rem); }
+  .intro { max-width: 60ch; margin: 1rem 0 2rem; color: var(--color-bone-dim); font-size: 1.15rem; }
+  .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .booking-grid article { min-height: 22rem; padding: clamp(1.5rem, 4vw, 2.5rem); border: 3px solid; display: flex; flex-direction: column; align-items: flex-start; }
+  .booking-grid span { font: 700 .75rem var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+  .booking-grid h2 { margin: .8rem 0; font-size: clamp(2.2rem, 5vw, 4rem); }
+  .booking-grid p { max-width: 48ch; margin-bottom: 1.5rem; }
+  .booking-grid .btn { margin-top: auto; }
+  .cover-choice { background: #f5ecd9; color: #241d17; border-color: var(--cover-pink) !important; box-shadow: 9px 9px 0 var(--cover-pink); }
+  .cover-choice h2 { color: #241d17; }
+  .cover-choice span { color: #8f1d4b; }
+  .original-choice { background: #0d0b0a; color: var(--color-bone-dim); border-color: #5f3f15 !important; box-shadow: 9px 9px 0 #050404; }
+  .original-choice span { color: var(--color-amber); }
+  .direct-contact { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(236,228,211,.18); }
+  .direct-contact a { font-size: clamp(1.2rem, 4vw, 2rem); font-family: var(--font-mono); }
+  @media (max-width: 720px) { .booking-grid { grid-template-columns: 1fr; } }
 </style>

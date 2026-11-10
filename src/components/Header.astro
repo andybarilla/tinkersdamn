@@ -1,86 +1,44 @@
 ---
-import {Image} from 'astro:assets';
-import image from '../assets/tinkers-damn-logo.png'
-import Navigation from "./Navigation.astro";
-
-const { showLogo = true } = Astro.props;
+import Navigation from './Navigation.astro';
 ---
-<header class="header-container flex flex-col justify-center items-center">
-    {showLogo && (
-    <a href="/" class="logo-link transition-all duration-300">
-        <Image src={image} alt="Tinker's Damn Logo" height={150}/>
-    </a>)}
-    <Navigation/>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="/" aria-label="Tinker's Damn home">
+      <span>Tinker's</span> <b>Damn</b>
+    </a>
+    <Navigation />
+  </div>
 </header>
 
 <style>
-    .header-container {
-        background: linear-gradient(
-            180deg,
-            rgba(58, 16, 17, 0.6) 0%,
-            rgba(20, 17, 15, 0.98) 100%
-        );
-        padding: 1rem 0;
-        border-bottom: 1px solid rgba(196, 32, 42, 0.2);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        transition: all 0.5s ease;
-    }
-
-    .header-container.scrolled {
-        background: linear-gradient(
-            180deg,
-            rgba(58, 16, 17, 0.4) 0%,
-            rgba(20, 17, 15, 0.98) 100%
-        );
-        border-bottom: 1px solid rgba(224, 163, 46, 0.25);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .logo-link {
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-        transition: all 0.3s ease;
-    }
-
-    .logo-link:hover {
-        filter:
-            drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6))
-            drop-shadow(0 0 25px rgba(196, 32, 42, 0.4))
-            drop-shadow(0 0 35px rgba(224, 163, 46, 0.25));
-        transform: scale(1.02);
-    }
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(20, 17, 15, 0.94);
+    border-bottom: 3px solid var(--page-accent, var(--color-rust));
+    backdrop-filter: blur(12px);
+  }
+  .header-inner {
+    width: min(100% - 2rem, 74rem);
+    min-height: 4.5rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .wordmark {
+    flex: 0 0 auto;
+    color: var(--color-bone);
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .wordmark b { color: var(--page-accent, var(--color-road)); font-weight: inherit; }
+  .wordmark:hover { color: var(--color-bone); }
+  @media (max-width: 860px) { .header-inner { min-height: 4rem; } }
 </style>
-
-<script>
-    // Scroll-based color transition for header
-    const header = document.querySelector('.header-container');
-    let lastScrollY = 0;
-    let ticking = false;
-
-    function updateHeaderColor() {
-        const scrollY = window.scrollY;
-        const scrollThreshold = 300;
-
-        if (header) {
-            if (scrollY > scrollThreshold) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        }
-
-        lastScrollY = scrollY;
-        ticking = false;
-    }
-
-    function requestHeaderUpdate() {
-        if (!ticking) {
-            window.requestAnimationFrame(updateHeaderColor);
-            ticking = true;
-        }
-    }
-
-    window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
-
-    // Initial check
-    updateHeaderColor();
-</script>
