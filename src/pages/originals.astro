@@ -6,11 +6,13 @@ import { Image } from 'astro:assets';
 import { YouTube } from 'astro-embed';
 import bandPhoto from '../assets/bandphoto2022adjusted2.jpg';
 import albumCover from '../assets/earl-dr-cover.png';
+import ogImage from '../assets/og-originals.jpg';
 ---
 <Layout
   title="Original Music EPK"
   description="Original grunge, stoner, and psych rock from Colorado Springs. Book Tinker's Damn across the Front Range. Album, live videos, band bio, press photo, and stage details."
-  ogImage={bandPhoto}
+  ogImage={ogImage}
+  ogImageAlt="Tinker's Damn original music EPK with the words Heavy grooves, very few smiles"
   theme="original"
 >
   <section class="original-hero">

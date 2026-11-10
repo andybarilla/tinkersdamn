@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs><linearGradient id="bgShade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#15100d" stop-opacity="0.98"/><stop offset="1" stop-color="#15100d" stop-opacity="0.70"/></linearGradient><clipPath id="portrait"><rect x="790" y="42" width="350" height="546"/></clipPath></defs>
+  <rect width="1200" height="630" fill="#17120f"/>
+  <image href="../../src/assets/covers-band-brewery.jpg" x="0" y="-135" width="1200" height="900" preserveAspectRatio="none" opacity="0.38"/>
+  <rect width="1200" height="630" fill="url(#bgShade)"/>
+  <path d="M0 0H1200V18H0Z" fill="#d93677"/><path d="M0 18H760L725 36H0Z" fill="#f4d83f"/>
+  <rect x="802" y="54" width="350" height="546" fill="#d93677"/><rect x="790" y="42" width="350" height="546" fill="#f4d83f"/>
+  <g clip-path="url(#portrait)"><image href="courtney-live.jpg" x="790" y="42" width="350" height="546" preserveAspectRatio="xMidYMid slice"/></g>
+  <image href="../../src/assets/tinkers-damn-logo.png" x="58" y="42" width="215" height="124"/>
+  <text x="58" y="225" fill="#f4d83f" font-family="Adwaita Mono, monospace" font-size="19" font-weight="700" letter-spacing="3">COVER BAND EPK</text>
+  <g font-family="Adwaita Sans, sans-serif" font-weight="900" font-size="67" letter-spacing="-2">
+    <text x="65" y="320" fill="#d93677">ALTERNATIVE ROCK</text><text x="58" y="312" fill="#fff5df">ALTERNATIVE ROCK</text>
+    <text x="65" y="397" fill="#d93677">FOR A FULL NIGHT.</text><text x="58" y="389" fill="#fff5df">FOR A FULL NIGHT.</text>
+  </g>
+  <text x="58" y="465" fill="#fff5df" font-family="Adwaita Sans, sans-serif" font-size="24">45 minutes · 2×60 · 3×60</text>
+  <text x="58" y="503" fill="#fff5df" font-family="Adwaita Sans, sans-serif" font-size="22">Four vocal mics, technically.</text>
+  <rect x="58" y="540" width="390" height="46" fill="#f4d83f"/><text x="78" y="570" fill="#211813" font-family="Adwaita Mono, monospace" font-size="18" font-weight="700" letter-spacing="2">COLORADO SPRINGS, COLORADO</text>
+</svg>

@@ -4,11 +4,13 @@ import { Image } from 'astro:assets';
 import coverPhoto from '../assets/covers-band-brewery.jpg';
 import originalPhoto from '../assets/bandphoto2022adjusted2.jpg';
 import albumCover from '../assets/earl-dr-cover.png';
+import ogImage from '../assets/og-home.jpg';
 ---
 <Layout
   title="Tinker's Damn"
   description="Book Tinker's Damn for alternative rock covers in Colorado Springs, or catch the band's original grunge, stoner, and psych rock across the Front Range."
-  ogImage={coverPhoto}
+  ogImage={ogImage}
+  ogImageAlt="Tinker's Damn cover band with the words The songs you wore out before streaming existed"
   theme="cover"
 >
   <section class="home-hero">

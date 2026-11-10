@@ -5,11 +5,13 @@ import Bandcamp from '../components/Bandcamp.astro';
 import { Image } from 'astro:assets';
 import coverPhoto from '../assets/covers-band-brewery.jpg';
 import { coverRepertoire } from '../data/repertoire';
+import ogImage from '../assets/og-covers.jpg';
 ---
 <Layout
   title="Cover Band EPK"
   description="Book Tinker's Damn for alternative rock covers in Colorado Springs. Flexible 45-minute, two-hour, and three-hour formats, four singers, videos, repertoire, and stage details."
-  ogImage={coverPhoto}
+  ogImage={ogImage}
+  ogImageAlt="Tinker's Damn alternative rock cover band EPK for Colorado Springs"
   theme="cover"
 >
   <section class="cover-hero">
